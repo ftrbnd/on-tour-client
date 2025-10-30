@@ -9,6 +9,6 @@ import { ToolbarModule } from 'primeng/toolbar';
   selector: 'app-navbar',
   imports: [ToolbarModule, ButtonModule, InputTextModule, IconFieldModule, InputIconModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.scss',
+  styleUrl: './navbar.css',
 })
 export class Navbar {}
