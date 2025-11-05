@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -7,7 +8,14 @@ import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
   selector: 'app-navbar',
-  imports: [ToolbarModule, ButtonModule, InputTextModule, IconFieldModule, InputIconModule],
+  imports: [
+    ToolbarModule,
+    ButtonModule,
+    RouterLink,
+    InputTextModule,
+    IconFieldModule,
+    InputIconModule,
+  ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
