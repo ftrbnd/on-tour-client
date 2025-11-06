@@ -1,0 +1,11 @@
+import { ArtistData } from '../artist-card/artist-data';
+import { VenueData } from '../venues-page/venue-data';
+
+export interface ConcertData {
+  id: number;
+  date: Date;
+  tour: string;
+  venue: VenueData;
+  artist: ArtistData;
+  attendees: any[]; // TODO: add UserData interface
+}

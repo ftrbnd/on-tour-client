@@ -1,6 +1,8 @@
-<p-card class="overflow-hidden">
-  <ng-template #header>
-    <img alt="Card" class="size-64 md:size-48" [src]="artist()?.imageUrl" />
-  </ng-template>
-  <ng-template #title>{{ artist()?.name }}</ng-template>
-</p-card>
+<a [routerLink]="['/artists', artist()?.id]">
+  <p-card class="overflow-hidden">
+    <ng-template #header>
+      <img alt="Card" class="size-64 md:size-48" [src]="artist()?.imageUrl" />
+    </ng-template>
+    <ng-template #title>{{ artist()?.name }}</ng-template>
+  </p-card>
+</a>

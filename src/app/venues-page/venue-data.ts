@@ -1,10 +1,10 @@
 import { ConcertData } from '../concerts-page/concert-data';
 
-export interface ArtistData {
+export interface VenueData {
   id: number;
-  spotifyId: string;
   name: string;
-  imageUrl: string;
-  url: string;
+  city: string;
+  state: string;
+  country: string;
   concerts: ConcertData[];
 }
