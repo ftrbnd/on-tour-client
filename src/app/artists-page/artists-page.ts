@@ -1,8 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, Injectable, OnInit } from '@angular/core';
-import { ArtistData } from '../artist/artist-data';
-import { environment } from '../../environments/environment.development';
-import { Observable } from 'rxjs';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { ArtistData } from '../artist-card/artist-data';
 import { ArtistsService } from '../artists-service';
 
 @Component({
@@ -13,11 +10,10 @@ import { ArtistsService } from '../artists-service';
 })
 export class ArtistsPage implements OnInit {
   private artistsService = inject(ArtistsService);
-  artists: ArtistData[] = [];
+
+  artists = signal<ArtistData[]>([]);
 
   ngOnInit(): void {
-    this.artistsService.getArtists().subscribe((res) => {
-      this.artists = res;
-    });
+    this.artistsService.getArtists().subscribe((res) => this.artists.set(res));
   }
 }
