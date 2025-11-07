@@ -1,0 +1,17 @@
+<a [routerLink]="['/concerts', concert()?.id]">
+  <p-card class="overflow-hidden">
+    <ng-template #header>
+      <img
+        [alt]="concert()?.artist?.name"
+        class="size-64 md:size-48"
+        [src]="concert()?.artist?.imageUrl"
+      />
+      <img
+        [alt]="concert()?.venue?.name"
+        class="size-64 md:size-48"
+        [src]="concert()?.venue?.imageUrl"
+      />
+    </ng-template>
+    <ng-template #title>{{ concert()?.tour }}</ng-template>
+  </p-card>
+</a>
