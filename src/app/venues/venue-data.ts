@@ -1,4 +1,4 @@
-import { ConcertData } from '../concerts-page/concert-data';
+import { ConcertData } from '../concerts/concert-data';
 
 export interface VenueData {
   id: number;
@@ -6,5 +6,6 @@ export interface VenueData {
   city: string;
   state: string;
   country: string;
+  imageUrl: string;
   concerts: ConcertData[];
 }

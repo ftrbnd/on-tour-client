@@ -1,15 +1,14 @@
 import { Component, input } from '@angular/core';
-import { ArtistData } from './artist-data';
+import { VenueData } from '../venue-data';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-artist-card',
+  selector: 'app-venue-card',
   imports: [CardModule, ButtonModule, RouterLink],
-  templateUrl: './artist-card.html',
-  styleUrl: './artist-card.css',
+  templateUrl: './venue-card.html',
 })
-export class ArtistCard {
-  artist = input<ArtistData>();
+export class VenueCard {
+  venue = input<VenueData>();
 }

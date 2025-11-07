@@ -1,0 +1,9 @@
+<a [routerLink]="['/venues', venue()?.id]">
+  <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+    <ng-template #header>
+      <img alt="Card" class="size-64 md:h-48 md:w-72" [src]="venue()?.imageUrl" />
+    </ng-template>
+    <ng-template #title> {{ venue()?.name }} </ng-template>
+    <ng-template #subtitle> {{ venue()?.city }}, {{ venue()?.state }} </ng-template>
+  </p-card>
+</a>

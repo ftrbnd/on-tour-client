@@ -8,7 +8,6 @@ import { switchMap } from 'rxjs/operators';
   selector: 'app-artist-page',
   imports: [],
   templateUrl: './artist-page.html',
-  styleUrl: './artist-page.css',
 })
 export class ArtistPage {
   private activatedRoute = inject(ActivatedRoute);

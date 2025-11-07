@@ -1,5 +1,5 @@
-import { ArtistData } from '../artist-card/artist-data';
-import { VenueData } from '../venues-page/venue-data';
+import { ArtistData } from '../artists/artist-data';
+import { VenueData } from '../venues/venue-data';
 
 export interface ConcertData {
   id: number;

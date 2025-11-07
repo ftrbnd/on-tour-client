@@ -1,4 +1,4 @@
-import { ConcertData } from '../concerts-page/concert-data';
+import { ConcertData } from '../concerts/concert-data';
 
 export interface ArtistData {
   id: number;

@@ -17,6 +17,5 @@ import { ToolbarModule } from 'primeng/toolbar';
     InputIconModule,
   ],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
 })
 export class Navbar {}

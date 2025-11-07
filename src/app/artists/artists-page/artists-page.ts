@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ArtistData } from '../artist-card/artist-data';
+import { ArtistData } from '../artist-data';
 import { ArtistsService } from '../artists-service';
 import { ArtistCard } from '../artist-card/artist-card';
 
@@ -7,7 +7,6 @@ import { ArtistCard } from '../artist-card/artist-card';
   selector: 'app-artists-page',
   imports: [ArtistCard],
   templateUrl: './artists-page.html',
-  styleUrl: './artists-page.css',
 })
 export class ArtistsPage implements OnInit {
   private artistsService = inject(ArtistsService);
