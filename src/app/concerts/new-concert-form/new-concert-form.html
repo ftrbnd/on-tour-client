@@ -1,0 +1,43 @@
+<form [formGroup]="concertForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-user"></i>
+    </p-inputgroup-addon>
+    <p-floatlabel variant="on">
+      <p-select [options]="artists" optionLabel="artists" placeholder="Artist" />
+      <label for="artist">Artist</label>
+    </p-floatlabel>
+  </p-inputgroup>
+
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-building"></i>
+    </p-inputgroup-addon>
+    <p-floatlabel variant="on">
+      <p-select [options]="venues" optionLabel="venues" placeholder="Venue" />
+      <label for="venue">Venue</label>
+    </p-floatlabel>
+  </p-inputgroup>
+
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-map"></i>
+    </p-inputgroup-addon>
+    <p-floatlabel variant="on">
+      <input pInputText id="tour" type="text" formControlName="tour" />
+      <label for="tour">Tour</label>
+    </p-floatlabel>
+  </p-inputgroup>
+
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-calendar"></i>
+    </p-inputgroup-addon>
+    <p-floatlabel variant="on">
+      <input pInputText id="date" type="date" formControlName="date" placeholder="" />
+      <label for="date">Date</label>
+    </p-floatlabel>
+  </p-inputgroup>
+
+  <p-button type="submit" [disabled]="!concertForm.valid">Submit</p-button>
+</form>
