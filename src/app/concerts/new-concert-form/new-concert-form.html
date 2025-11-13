@@ -4,8 +4,14 @@
       <i class="pi pi-user"></i>
     </p-inputgroup-addon>
     <p-floatlabel variant="on">
-      <p-select [options]="artists" optionLabel="artists" placeholder="Artist" />
-      <label for="artist">Artist</label>
+      <p-select
+        [options]="artists()"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="Artist"
+        formControlName="artistId"
+        [invalid]="isInvalid('artistId')"
+      />
     </p-floatlabel>
   </p-inputgroup>
 
@@ -14,8 +20,14 @@
       <i class="pi pi-building"></i>
     </p-inputgroup-addon>
     <p-floatlabel variant="on">
-      <p-select [options]="venues" optionLabel="venues" placeholder="Venue" />
-      <label for="venue">Venue</label>
+      <p-select
+        [options]="venues()"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="Venue"
+        formControlName="venueId"
+        [invalid]="isInvalid('venueId')"
+      />
     </p-floatlabel>
   </p-inputgroup>
 
@@ -23,10 +35,24 @@
     <p-inputgroup-addon>
       <i class="pi pi-map"></i>
     </p-inputgroup-addon>
-    <p-floatlabel variant="on">
-      <input pInputText id="tour" type="text" formControlName="tour" />
-      <label for="tour">Tour</label>
-    </p-floatlabel>
+    <div class="flex flex-col gap-1 w-full">
+      <p-floatlabel variant="on">
+        <input
+          pInputText
+          id="tour"
+          type="text"
+          formControlName="tour"
+          [invalid]="isInvalid('tour')"
+        />
+        <label for="tour">Tour</label>
+      </p-floatlabel>
+
+      @if (isInvalid('tour') && concertForm.hasError('maxLength')) {
+      <p-message severity="error" size="small" variant="simple"
+        >Tour name must be under 100 characters.</p-message
+      >
+      }
+    </div>
   </p-inputgroup>
 
   <p-inputgroup>
@@ -34,7 +60,7 @@
       <i class="pi pi-calendar"></i>
     </p-inputgroup-addon>
     <p-floatlabel variant="on">
-      <input pInputText id="date" type="date" formControlName="date" placeholder="" />
+      <p-datepicker formControlName="date" dateFormat="MM d, yy" [invalid]="isInvalid('date')" />
       <label for="date">Date</label>
     </p-floatlabel>
   </p-inputgroup>
