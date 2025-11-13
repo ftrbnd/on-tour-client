@@ -1,21 +1,45 @@
 @if (concert()) {
-<a [routerLink]="['/concerts', concert()?.id]">
-  <p-card class="overflow-hidden">
-    <ng-template #header>
-      <img
-        [alt]="concert()?.artist?.name"
-        class="size-64 md:size-48"
-        [src]="concert()?.artist?.imageUrl"
-      />
+<p-card class="overflow-hidden">
+  <ng-template #header>
+    <div class="relative">
       <img
         [alt]="concert()?.venue?.name"
-        class="size-64 md:size-48"
+        class="w-full md:max-w-72 object-cover"
         [src]="concert()?.venue?.imageUrl"
       />
-    </ng-template>
-    <ng-template #title>{{ concert()?.tour }}</ng-template>
-  </p-card>
-</a>
+      <p-avatar
+        [image]="concert()?.artist?.imageUrl"
+        class="mr-2 absolute inset-y-44 inset-x-4 border-2 border-primary"
+        size="xlarge"
+        shape="circle"
+      />
+    </div>
+  </ng-template>
+  <ng-template #title>
+    <a [routerLink]="['/concerts', concert()?.id]" class="hover:brightness-80 hover:underline">
+      <h2 class="mt-4">{{ concert()?.artist?.name }} at {{ concert()?.venue?.name }}</h2>
+    </a>
+  </ng-template>
+
+  <ng-template #subtitle> {{ concert()?.tour }} </ng-template>
+  <p>
+    {{ concert()?.venue?.city }},
+    {{ concert()?.venue?.country === 'USA' ? concert()?.venue?.state : concert()?.venue?.country }}
+  </p>
+  <ng-template #footer>
+    <div class="flex gap-4 mt-1">
+      <button class="w-full" pButton severity="secondary">
+        <i class="pi pi-plus" pButtonIcon></i>
+        <span pButtonLabel>Add</span>
+      </button>
+
+      <button class="w-full" pButton>
+        <i class="pi pi-pencil" pButtonIcon></i>
+        <span pButtonLabel>Log</span>
+      </button>
+    </div>
+  </ng-template>
+</p-card>
 } @else {
 <p-message severity="error" size="small" variant="simple">Concert not found.</p-message>
 }
