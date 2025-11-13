@@ -1,3 +1,4 @@
+@if (concert()) {
 <a [routerLink]="['/concerts', concert()?.id]">
   <p-card class="overflow-hidden">
     <ng-template #header>
@@ -15,3 +16,6 @@
     <ng-template #title>{{ concert()?.tour }}</ng-template>
   </p-card>
 </a>
+} @else {
+<p-message severity="error" size="small" variant="simple">Concert not found.</p-message>
+}

@@ -1,6 +1,10 @@
 <h2 class="text-4xl font-bold pt-4">Venues</h2>
+@if (venues().length > 0) {
 <div class="flex flex-col items-center md:grid md:grid-cols-3 gap-4 md:justify-items-center py-4">
   @for (venue of venues(); track $index) {
   <app-venue-card [venue]="venue" />
   }
 </div>
+} @else {
+<p-message severity="error" size="small" variant="simple">No venues found.</p-message>
+}
