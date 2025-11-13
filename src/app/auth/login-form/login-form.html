@@ -1,0 +1,48 @@
+<div class="flex flex-col w-full mt-24 justify-center items-center">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 w-full md:w-80">
+    <h1 class="text-2xl font-bold text-center">Welcome!</h1>
+
+    <div class="flex flex-col gap-2">
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-envelope"></i>
+        </p-inputgroup-addon>
+        <div class="flex flex-col gap-1 w-full">
+          <p-floatlabel variant="on">
+            <input pInputText id="email" type="text" formControlName="email" />
+            <label for="email">Email</label>
+          </p-floatlabel>
+
+          @if (isInvalid('email') && loginForm.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple">Email is required.</p-message>
+          }
+        </div>
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-key"></i>
+        </p-inputgroup-addon>
+        <div class="flex flex-col gap-1 w-full">
+          <p-floatlabel variant="on">
+            <input pInputText id="password" type="password" formControlName="password" />
+            <label for="password">Password</label>
+          </p-floatlabel>
+
+          @if (isInvalid('password') && loginForm.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Password is required.</p-message
+          >
+          }
+        </div>
+      </p-inputgroup>
+    </div>
+
+    <div class="flex gap-4 justify-center items-center">
+      <a routerLink="/" pButton class="hover:underline">
+        <span pButtonLabel>Cancel</span>
+      </a>
+      <p-button label="Log in" type="submit" [disabled]="!loginForm.valid" />
+    </div>
+  </form>
+</div>
