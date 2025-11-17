@@ -13,8 +13,17 @@
         <span pButtonLabel>Concerts</span>
       </a>
     </div>
+    @if (!authService.isAuthenticated()) {
     <a routerLink="/login" pButton>
       <span pButtonLabel>Log in</span>
     </a>
+    } @else {
+    <p-button
+      (onClick)="authService.logout()"
+      label="Log out"
+      variant="outlined"
+      severity="danger"
+    />
+    }
   </div>
 </p-toolbar>

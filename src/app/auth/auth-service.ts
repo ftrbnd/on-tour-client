@@ -7,25 +7,16 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService implements OnInit {
-  private http = inject(HttpClient);
+export class AuthService {
+  http = inject(HttpClient);
 
   authStatus = signal<AuthStatus | null>(null);
   isAuthenticated = computed(() => this.authStatus() !== null);
 
-  ngOnInit(): void {
-    // fetch user details from backend with token
-    // token is fetched in interceptor
-    this.getUser().subscribe({
-      next: (res) => {
-        console.log(res);
-        this.authStatus.set(res);
-      },
-    });
-  }
-
   getToken() {
-    return localStorage.getItem(TOKEN_KEY);
+    const token = localStorage.getItem(TOKEN_KEY);
+    console.log({ token });
+    return token;
   }
 
   setToken(token: string) {

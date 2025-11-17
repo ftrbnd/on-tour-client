@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
+import { AuthService } from '../auth/auth-service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,4 +19,6 @@ import { ToolbarModule } from 'primeng/toolbar';
   ],
   templateUrl: './navbar.html',
 })
-export class Navbar {}
+export class Navbar {
+  authService = inject(AuthService);
+}
