@@ -8,6 +8,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { Button } from 'primeng/button';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginForm {
   loginResult = signal<LoginResult | null>(null);
 
   private authService = inject(AuthService);
+  private router = inject(Router);
 
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
@@ -41,13 +43,19 @@ export class LoginForm {
     const email = this.loginForm.controls.email.value;
     const password = this.loginForm.controls.password.value;
 
-    const request = loginRequestSchema.parse({ email, password });
+    const { data: request, error } = loginRequestSchema.safeParse({ email, password });
+    if (error) {
+      return this.loginForm.setErrors({
+        hasSpaces: true,
+      });
+    }
 
     this.authService.login(request).subscribe({
       next: (result) => {
         console.log(result);
         if (result.success && result.token) {
-          localStorage.setItem(TOKEN_KEY, result.token);
+          this.authService.setToken(result.token);
+          this.router.navigateByUrl('/');
         }
 
         this.loginResult.set(result);

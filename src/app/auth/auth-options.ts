@@ -14,3 +14,9 @@ export const loginResultSchema = z.object({
   token: z.string().optional(),
 });
 export type LoginResult = z.infer<typeof loginResultSchema>;
+
+export const authStatusSchema = z.object({
+  email: z.string(),
+  username: z.string(),
+});
+export type AuthStatus = z.infer<typeof authStatusSchema>;

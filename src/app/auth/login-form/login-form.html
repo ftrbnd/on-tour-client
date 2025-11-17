@@ -38,6 +38,11 @@
       </p-inputgroup>
     </div>
 
+    @if (loginForm.hasError('hasSpaces')) {
+    <p-message severity="error" size="small" variant="simple" class="self-center"
+      >No spaces are allowed.</p-message
+    >
+    }
     <div class="flex gap-4 justify-center items-center">
       <a routerLink="/" pButton class="hover:underline">
         <span pButtonLabel>Cancel</span>
