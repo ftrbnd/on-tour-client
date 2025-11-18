@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { loginRequestSchema, LoginResult, TOKEN_KEY } from '../auth-options';
+import { loginRequestSchema, LoginResult } from '../auth-options';
 import { AuthService } from '../auth-service';
 import { MessageModule } from 'primeng/message';
 import { InputGroupModule } from 'primeng/inputgroup';

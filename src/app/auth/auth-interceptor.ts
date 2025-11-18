@@ -1,9 +1,14 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from './auth-service';
+import { catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 export const authInterceptor: HttpInterceptorFn = (request, next) => {
-  const authToken = inject(AuthService).getToken();
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  const authToken = authService.getToken();
 
   const newRequest = request.clone({
     setHeaders: {
@@ -11,5 +16,14 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
     },
   });
 
-  return next(newRequest);
+  return next(newRequest).pipe(
+    catchError((err) => {
+      if (err instanceof HttpErrorResponse && err.status === 401) {
+        authService.logout();
+        router.navigateByUrl('/login');
+      }
+
+      return throwError(() => err);
+    })
+  );
 };

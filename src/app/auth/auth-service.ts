@@ -13,6 +13,19 @@ export class AuthService {
   authStatus = signal<AuthStatus | null>(null);
   isAuthenticated = computed(() => this.authStatus() !== null);
 
+  init() {
+    this.getUser().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.authStatus.set(res);
+      },
+      error: (err) => {
+        console.error(err);
+        this.authStatus.set(null);
+      },
+    });
+  }
+
   getToken() {
     const token = localStorage.getItem(TOKEN_KEY);
     console.log({ token });
