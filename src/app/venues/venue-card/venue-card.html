@@ -1,9 +1,18 @@
 <a [routerLink]="['/venues', venue()?.id]">
-  <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+  <p-card class="overflow-hidden">
     <ng-template #header>
       <img alt="Card" class="size-64 md:h-48 md:w-72" [src]="venue()?.imageUrl" />
     </ng-template>
     <ng-template #title> {{ venue()?.name }} </ng-template>
-    <ng-template #subtitle> {{ venue()?.city }}, {{ venue()?.state }} </ng-template>
+    <ng-template #subtitle>
+      <div class="flex flex-wrap justify-between gap-4">
+        <p>{{ venue()?.city }}, {{ venue()?.state }}</p>
+        @if (venue()?.concerts?.length){
+        <p-overlaybadge [value]="venue()?.concerts?.length" badgeSize="small">
+          <i class="pi pi-building text-4xl"></i>
+        </p-overlaybadge>
+        }
+      </div>
+    </ng-template>
   </p-card>
 </a>
