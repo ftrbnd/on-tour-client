@@ -4,7 +4,7 @@ import { z } from 'zod/v4';
 
 export const concertSchema = z.object({
   id: z.number(),
-  date: z.date(),
+  date: z.string(),
   tour: z.string(),
   get venue() {
     return venueSchema.omit({ concerts: true });

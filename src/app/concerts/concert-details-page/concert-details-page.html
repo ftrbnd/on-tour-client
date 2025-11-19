@@ -1,0 +1,17 @@
+<div class="relative w-full h-24">
+  <img
+    [src]="concert()?.venue?.imageUrl"
+    [alt]="concert()?.venue?.name"
+    class="w-full h-full object-cover brightness-50"
+  />
+  <h2 class="absolute inset-y-8 inset-x-4 text-4xl font-bold">
+    {{ concert()?.tour }}
+  </h2>
+  <h3 class="absolute inset-y-16 inset-x-4 text-2xl font-extralight">
+    {{ concert()?.artist?.name }} at {{ concert()?.venue?.name }}
+  </h3>
+</div>
+
+<p class="my-4">{{ concertDate() | date : 'longDate' }}</p>
+
+<app-concert-action-buttons [concert]="concert()" />

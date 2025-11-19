@@ -14,6 +14,7 @@ import { concertFormSchema } from '../concert-data';
 import { DatePickerModule } from 'primeng/datepicker';
 import { MessageModule } from 'primeng/message';
 import { ConcertsService } from '../concerts-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-concert-form',
@@ -34,6 +35,7 @@ export class NewConcertForm implements OnInit {
   private artistsService = inject(ArtistsService);
   private venuesService = inject(VenuesService);
   private concertsService = inject(ConcertsService);
+  private router = inject(Router);
 
   artists = signal<ArtistData[]>([]);
   venues = signal<VenueData[]>([]);
@@ -67,7 +69,7 @@ export class NewConcertForm implements OnInit {
     } else {
       this.concertsService.createConcert(validConcert).subscribe({
         error: (err) => console.error(err),
-        next: (data) => console.log(data),
+        next: (data) => this.router.navigateByUrl(`/concerts/${data.id}`),
       });
     }
   }
