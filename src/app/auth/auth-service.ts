@@ -1,7 +1,7 @@
-import { computed, inject, Injectable, OnInit, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment.development';
-import { AuthStatus, LoginRequest, LoginResult, TOKEN_KEY } from './auth-options';
+import { AuthStatus, AuthRequest, AuthResponse, TOKEN_KEY } from './auth-options';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,7 +16,6 @@ export class AuthService {
   init() {
     this.getUser().subscribe({
       next: (res) => {
-        console.log(res);
         this.authStatus.set(res);
       },
       error: (err) => {
@@ -28,20 +27,24 @@ export class AuthService {
 
   getToken() {
     const token = localStorage.getItem(TOKEN_KEY);
-    console.log({ token });
     return token;
   }
 
   setToken(token: string) {
     localStorage.setItem(TOKEN_KEY, token);
+    this.init();
   }
 
   getUser() {
-    return this.http.get<AuthStatus>(`${environment.apiUrl}/api/account/me`);
+    return this.http.get<AuthStatus>(`${environment.apiUrl}/api/auth/me`);
   }
 
-  login(request: LoginRequest): Observable<LoginResult> {
-    return this.http.post<LoginResult>(`${environment.apiUrl}/api/account/login`, request);
+  register(request: AuthRequest) {
+    return this.http.post<AuthResponse>(`${environment.apiUrl}/api/auth/register`, request);
+  }
+
+  login(request: AuthRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${environment.apiUrl}/api/auth/login`, request);
   }
 
   logout() {

@@ -1,0 +1,85 @@
+<div class="flex flex-col w-full mt-24 justify-center items-center">
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-col gap-4 w-full md:w-80"
+  >
+    <h1 class="text-2xl font-bold text-center">Welcome to On Tour!</h1>
+
+    <div class="flex flex-col gap-2">
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-at"></i>
+        </p-inputgroup-addon>
+        <div class="flex flex-col gap-1 w-full">
+          <p-floatlabel variant="on">
+            <input pInputText id="username" type="text" formControlName="username" />
+            <label for="username">Username</label>
+          </p-floatlabel>
+
+          @if (isInvalid('username') && registerForm.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Username is required.</p-message
+          >
+          }
+        </div>
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-envelope"></i>
+        </p-inputgroup-addon>
+        <div class="flex flex-col gap-1 w-full">
+          <p-floatlabel variant="on">
+            <input pInputText id="email" type="text" formControlName="email" />
+            <label for="email">Email</label>
+          </p-floatlabel>
+
+          @if (isInvalid('email') && registerForm.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple">Email is required.</p-message>
+          }
+        </div>
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-key"></i>
+        </p-inputgroup-addon>
+        <div class="flex flex-col gap-1 w-full">
+          <p-floatlabel variant="on">
+            <input pInputText id="password" type="password" formControlName="password" />
+            <label for="password">Password</label>
+          </p-floatlabel>
+
+          @if (isInvalid('password') && registerForm.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Password is required.</p-message
+          >
+          }
+        </div>
+      </p-inputgroup>
+    </div>
+
+    @if (registerForm.hasError('hasSpaces')) {
+    <p-message severity="error" size="small" variant="simple" class="self-center">
+      No spaces are allowed.
+    </p-message>
+    } @if (!registerResponse()?.success) {
+    <p-message severity="error" size="small" variant="simple" class="self-center">
+      {{ registerResponse()?.message }}
+    </p-message>
+    }
+
+    <p-message severity="info" variant="simple" size="small" class="self-center">
+      Already have an account?
+      <a routerLink="/login" class="underline">Log in</a>
+    </p-message>
+
+    <div class="flex gap-4 justify-center items-center">
+      <a routerLink="/" pButton class="hover:underline">
+        <span pButtonLabel>Cancel</span>
+      </a>
+      <p-button label="Register" type="submit" [disabled]="!registerForm.valid" />
+    </div>
+  </form>
+</div>

@@ -5,8 +5,9 @@ import { ConcertsPage } from './concerts/concerts-page/concerts-page';
 import { ArtistPage } from './artists/artist-page/artist-page';
 import { VenuePage } from './venues/venue-page/venue-page';
 import { CreateConcertPage } from './concerts/create-concert-page/create-concert-page';
-import { LoginForm } from './auth/login-form/login-form';
+import { Login } from './auth/login/login';
 import { authGuard } from './auth/auth-guard';
+import { Register } from './auth/register/register';
 
 export const routes: Routes = [
   { path: 'artists', component: ArtistsPage },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'venues/:id', component: VenuePage },
   { path: 'concerts', component: ConcertsPage },
   { path: 'concerts/new', component: CreateConcertPage, canActivate: [authGuard] },
-  { path: 'login', component: LoginForm },
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
 ];

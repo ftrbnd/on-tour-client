@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { loginRequestSchema, LoginResult } from '../auth-options';
+import { authRequestSchema, AuthResponse } from '../auth-options';
 import { AuthService } from '../auth-service';
 import { MessageModule } from 'primeng/message';
 import { InputGroupModule } from 'primeng/inputgroup';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login-form.html',
+  templateUrl: './login.html',
   imports: [
     ReactiveFormsModule,
     MessageModule,
@@ -23,14 +23,14 @@ import { Router } from '@angular/router';
     RouterLink,
   ],
 })
-export class LoginForm {
-  loginResult = signal<LoginResult | null>(null);
+export class Login {
+  loginResponse = signal<AuthResponse | null>(null);
 
   private authService = inject(AuthService);
   private router = inject(Router);
 
   loginForm = new FormGroup({
-    email: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
@@ -40,10 +40,12 @@ export class LoginForm {
   }
 
   onSubmit() {
-    const email = this.loginForm.controls.email.value;
+    const username = this.loginForm.controls.username.value;
     const password = this.loginForm.controls.password.value;
 
-    const { data: request, error } = loginRequestSchema.safeParse({ email, password });
+    const { data: request, error } = authRequestSchema
+      .omit({ email: true })
+      .safeParse({ username, password });
     if (error) {
       return this.loginForm.setErrors({
         hasSpaces: true,
@@ -52,18 +54,17 @@ export class LoginForm {
 
     this.authService.login(request).subscribe({
       next: (result) => {
-        console.log(result);
         if (result.success && result.token) {
           this.authService.setToken(result.token);
           this.router.navigateByUrl('/');
         }
 
-        this.loginResult.set(result);
+        this.loginResponse.set(result);
       },
       error: (error) => {
-        console.log(error);
+        console.error(error);
         if (error.status == 401) {
-          this.loginResult.set(error.error);
+          this.loginResponse.set(error.error);
         }
       },
     });

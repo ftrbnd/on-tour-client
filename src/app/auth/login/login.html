@@ -5,16 +5,18 @@
     <div class="flex flex-col gap-2">
       <p-inputgroup>
         <p-inputgroup-addon>
-          <i class="pi pi-envelope"></i>
+          <i class="pi pi-at"></i>
         </p-inputgroup-addon>
         <div class="flex flex-col gap-1 w-full">
           <p-floatlabel variant="on">
-            <input pInputText id="email" type="text" formControlName="email" />
-            <label for="email">Email</label>
+            <input pInputText id="username" type="text" formControlName="username" />
+            <label for="username">Username</label>
           </p-floatlabel>
 
-          @if (isInvalid('email') && loginForm.hasError('required')) {
-          <p-message severity="error" size="small" variant="simple">Email is required.</p-message>
+          @if (isInvalid('username') && loginForm.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple"
+            >Username is required.</p-message
+          >
           }
         </div>
       </p-inputgroup>
@@ -39,10 +41,20 @@
     </div>
 
     @if (loginForm.hasError('hasSpaces')) {
-    <p-message severity="error" size="small" variant="simple" class="self-center"
-      >No spaces are allowed.</p-message
-    >
+    <p-message severity="error" size="small" variant="simple" class="self-center">
+      No spaces are allowed.
+    </p-message>
+    } @if (!loginResponse()?.success) {
+    <p-message severity="error" size="small" variant="simple" class="self-center">
+      {{ loginResponse()?.message }}
+    </p-message>
     }
+
+    <p-message severity="info" variant="simple" size="small" class="self-center">
+      Don't have an account?
+      <a routerLink="/register" class="underline">Sign up instead.</a>
+    </p-message>
+
     <div class="flex gap-4 justify-center items-center">
       <a routerLink="/" pButton class="hover:underline">
         <span pButtonLabel>Cancel</span>
