@@ -15,9 +15,6 @@ export class VenuesPage implements OnInit {
   venues = signal<VenueData[]>([]);
 
   ngOnInit(): void {
-    this.venuesService.getVenues().subscribe((res) => {
-      console.log(res);
-      this.venues.set(res);
-    });
+    this.venuesService.getVenues().subscribe((res) => this.venues.set(res));
   }
 }

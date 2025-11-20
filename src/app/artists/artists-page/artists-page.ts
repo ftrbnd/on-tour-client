@@ -15,9 +15,6 @@ export class ArtistsPage implements OnInit {
   artists = signal<ArtistData[]>([]);
 
   ngOnInit(): void {
-    this.artistsService.getArtists().subscribe((res) => {
-      console.log(res);
-      this.artists.set(res);
-    });
+    this.artistsService.getArtists().subscribe((res) => this.artists.set(res));
   }
 }

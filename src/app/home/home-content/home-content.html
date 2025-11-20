@@ -1,0 +1,18 @@
+@if (authService.isAuthenticated()) {
+<h1 class="text-4xl md:text-6xl text-center">
+  Welcome back, {{ (authService.getUser() | async)?.username }}
+</h1>
+} @else {
+<div class="text-4xl md:text-6xl text-center h2-2 md:p-8">
+  <p>Log concerts you've attended.</p>
+  <p>Find the setlist for your show.</p>
+  <p>Share your experience with friends.</p>
+  <a routerLink="/login">
+    <p-button label="Get Started" severity="success" />
+  </a>
+</div>
+}
+
+<h2 class="text-2xl">New On Tour</h2>
+<h2 class="text-2xl">Popular On Tour</h2>
+<h2 class="text-2xl">Reviews This Week</h2>

@@ -9,8 +9,10 @@ import { Login } from './auth/login/login';
 import { authGuard } from './auth/auth-guard';
 import { Register } from './auth/register/register';
 import { ConcertDetailsPage } from './concerts/concert-details-page/concert-details-page';
+import { HomeContent } from './home/home-content/home-content';
 
 export const routes: Routes = [
+  { path: '', component: HomeContent },
   { path: 'artists', component: ArtistsPage },
   { path: 'artists/:id', component: ArtistPage },
   { path: 'venues', component: VenuesPage },

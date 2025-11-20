@@ -16,9 +16,6 @@ export class ConcertsPage implements OnInit {
   concerts = signal<ConcertData[]>([]);
 
   ngOnInit(): void {
-    this.concertsService.getConcerts().subscribe((res) => {
-      console.log(res);
-      this.concerts.set(res);
-    });
+    this.concertsService.getConcerts().subscribe((res) => this.concerts.set(res));
   }
 }
