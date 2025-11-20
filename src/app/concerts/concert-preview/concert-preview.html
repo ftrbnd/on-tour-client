@@ -1,0 +1,38 @@
+<a [routerLink]="['/concerts', concert()?.id]" class="hover:opacity-80">
+  <div class="flex rounded-md bg-surface-900 h-36">
+    @if (currentPage() === "venue") {
+    <img [src]="concert()?.artist?.imageUrl" [alt]="concert()?.artist?.name" class="rounded-sm" />
+    } @else if (currentPage() === "artist") {
+    <img [src]="concert()?.venue?.imageUrl" [alt]="concert()?.venue?.name" class="rounded-sm" />
+    }
+
+    <div class="flex flex-col justify-between p-2 md:p-4">
+      @if (currentPage() === 'venue') {
+      <h2 class="text-2xl">{{ concert()?.artist?.name }} - {{ concert()?.tour }}</h2>
+      } @else if (currentPage() === 'artist') {
+      <h2 class="text-2xl">{{ concert()?.tour }}</h2>
+      }
+
+      <div class="flex flex-col">
+        @if (currentPage() === "artist") {
+        <p>{{ concert()?.venue?.name }}</p>
+        } @if (currentPage() === "venue") {
+        <p class="text-muted-color">
+          {{ venue()?.city }},
+          {{ venue()?.country === 'USA' ? venue()?.state : venue()?.country }}
+        </p>
+        } @else if (currentPage() === "artist") {
+        <p class="text-muted-color">
+          {{ concert()?.venue?.city }},
+          {{
+            concert()?.venue?.country === 'USA'
+              ? concert()?.venue?.state
+              : concert()?.venue?.country
+          }}
+        </p>
+        }
+        <p>{{ concert()?.date | date : 'longDate' }}</p>
+      </div>
+    </div>
+  </div>
+</a>

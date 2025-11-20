@@ -7,10 +7,10 @@ export const concertSchema = z.object({
   date: z.string(),
   tour: z.string(),
   get venue() {
-    return venueSchema.omit({ concerts: true });
+    return venueSchema.omit({ concerts: true }).optional();
   },
   get artist() {
-    return artistSchema.omit({ concerts: true });
+    return artistSchema.omit({ concerts: true }).optional();
   },
   attendees: z.array(z.any()), // TODO: add User schema
 });

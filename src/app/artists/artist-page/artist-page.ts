@@ -1,12 +1,13 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArtistsService } from '../artists-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs/operators';
+import { ConcertPreview } from '../../concerts/concert-preview/concert-preview';
 
 @Component({
   selector: 'app-artist-page',
-  imports: [],
+  imports: [ConcertPreview],
   templateUrl: './artist-page.html',
 })
 export class ArtistPage {

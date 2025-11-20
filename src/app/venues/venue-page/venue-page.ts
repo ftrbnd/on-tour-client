@@ -3,10 +3,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { VenuesService } from '../../venues/venues-service';
+import { ConcertPreview } from '../../concerts/concert-preview/concert-preview';
 
 @Component({
   selector: 'app-venue-page',
-  imports: [],
+  imports: [ConcertPreview],
   templateUrl: './venue-page.html',
 })
 export class VenuePage {

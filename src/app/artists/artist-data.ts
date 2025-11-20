@@ -8,7 +8,7 @@ export const artistSchema = z.object({
   imageUrl: z.url(),
   url: z.url(),
   get concerts() {
-    return z.array(concertSchema.omit({ artist: true }));
+    return z.array(concertSchema.omit({ artist: true })).optional();
   },
 });
 

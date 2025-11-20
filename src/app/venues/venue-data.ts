@@ -9,7 +9,7 @@ export const venueSchema = z.object({
   country: z.string(),
   imageUrl: z.url(),
   get concerts() {
-    return z.array(concertSchema.omit({ venue: true }));
+    return z.array(concertSchema.omit({ venue: true })).optional();
   },
 });
 
