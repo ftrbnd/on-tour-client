@@ -1,5 +1,5 @@
 @if (concert()) {
-<p-card class="overflow-hidden w-full sm:max-w-64 md:max-w-72 2xl:max-w-96">
+<p-card class="overflow-hidden w-full sm:max-w-64 md:max-w-72 2xl:max-w-96 h-full">
   <ng-template #header>
     <div class="relative">
       <img
@@ -17,7 +17,9 @@
   </ng-template>
   <ng-template #title>
     <a [routerLink]="['/concerts', concert()?.id]" class="hover:brightness-80 hover:underline">
-      <h2 class="mt-4">{{ concert()?.artist?.name }} at {{ concert()?.venue?.name }}</h2>
+      <h2 class="mt-4 line-clamp-1">
+        {{ concert()?.artist?.name }} at {{ concert()?.venue?.name }}
+      </h2>
     </a>
   </ng-template>
 
@@ -26,9 +28,12 @@
     {{ concert()?.venue?.city }},
     {{ concert()?.venue?.country === 'USA' ? concert()?.venue?.state : concert()?.venue?.country }}
   </p>
+
+  @if (isAuthenticated) {
   <ng-template #footer>
     <app-concert-action-buttons [concert]="concert()" />
   </ng-template>
+  }
 </p-card>
 } @else {
 <p-message severity="error" size="small" variant="simple">Concert not found.</p-message>

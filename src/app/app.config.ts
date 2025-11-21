@@ -13,6 +13,7 @@ import { providePrimeNG } from 'primeng/config';
 import Nora from '@primeuix/themes/nora';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './auth/auth-interceptor';
+import { AuthService } from './auth/auth-service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +26,10 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: Nora,
       },
+    }),
+    provideAppInitializer(() => {
+      const authService = inject(AuthService);
+      authService.init();
     }),
   ],
 };
