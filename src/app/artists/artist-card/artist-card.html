@@ -3,6 +3,15 @@
     <ng-template #header>
       <img alt="Card" class="size-64 md:size-48" [src]="artist()?.imageUrl" />
     </ng-template>
-    <ng-template #title>{{ artist()?.name }}</ng-template>
+    <ng-template #title>
+      <div class="flex flex-wrap justify-between gap-4">
+        <p>{{ artist()?.name }}</p>
+        @if (artist()?.concerts?.length){
+        <p-overlaybadge [value]="artist()?.concerts?.length" badgeSize="small">
+          <i class="pi pi-building text-4xl"></i>
+        </p-overlaybadge>
+        }
+      </div>
+    </ng-template>
   </p-card>
 </a>
