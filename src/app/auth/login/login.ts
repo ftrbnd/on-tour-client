@@ -63,9 +63,10 @@ export class Login {
       },
       error: (error) => {
         console.error(error);
-        if (error.status == 401) {
-          this.loginResponse.set(error.error);
-        }
+        this.loginResponse.set({
+          success: false,
+          message: error.status === 500 ? 'The server failed to respond.' : error.message,
+        });
       },
     });
   }
