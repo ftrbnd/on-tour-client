@@ -9,16 +9,21 @@ import { ConcertData, ConcertFormValues } from './concert-data';
 })
 export class ConcertsService {
   private http = inject(HttpClient);
+  private endpoint = `${environment.apiUrl}/api/concerts`;
 
   getConcerts(): Observable<ConcertData[]> {
-    return this.http.get<ConcertData[]>(`${environment.apiUrl}/api/concerts`);
+    return this.http.get<ConcertData[]>(this.endpoint);
   }
 
   getConcert(id: string): Observable<ConcertData> {
-    return this.http.get<ConcertData>(`${environment.apiUrl}/api/concerts/${id}`);
+    return this.http.get<ConcertData>(`${this.endpoint}/${id}`);
   }
 
   createConcert(data: ConcertFormValues): Observable<ConcertData> {
-    return this.http.post<ConcertData>(`${environment.apiUrl}/api/concerts`, data);
+    return this.http.post<ConcertData>(this.endpoint, data);
+  }
+
+  getLatestConcerts() {
+    return this.http.get<ConcertData[]>(`${this.endpoint}?sort=latest`);
   }
 }

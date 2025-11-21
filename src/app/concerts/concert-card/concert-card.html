@@ -1,10 +1,10 @@
 @if (concert()) {
-<p-card class="overflow-hidden">
+<p-card class="overflow-hidden w-full sm:max-w-64 md:max-w-72 2xl:max-w-96">
   <ng-template #header>
     <div class="relative">
       <img
         [alt]="concert()?.venue?.name"
-        class="w-full md:w-72 h-48 object-cover"
+        class="w-full h-48 object-cover"
         [src]="concert()?.venue?.imageUrl"
       />
       <p-avatar

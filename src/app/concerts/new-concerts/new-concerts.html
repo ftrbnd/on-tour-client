@@ -1,0 +1,14 @@
+@if (latestConcerts().length > 0) {
+<p-carousel
+  [value]="latestConcerts()"
+  [numVisible]="4"
+  [numScroll]="1"
+  [circular]="true"
+  [responsiveOptions]="responsiveOptions"
+  class="gap-4"
+>
+  <ng-template let-concert #item>
+    <app-concert-card [concert]="concert" />
+  </ng-template>
+</p-carousel>
+}
