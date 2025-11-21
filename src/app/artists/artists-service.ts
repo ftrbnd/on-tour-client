@@ -9,12 +9,17 @@ import { ArtistData } from './artist-data';
 })
 export class ArtistsService {
   private http = inject(HttpClient);
+  private endpoint = `${environment.apiUrl}/api/artists`;
 
   getArtists(): Observable<ArtistData[]> {
-    return this.http.get<ArtistData[]>(`${environment.apiUrl}/api/artists`);
+    return this.http.get<ArtistData[]>(this.endpoint);
   }
 
   getArtist(id: string): Observable<ArtistData> {
-    return this.http.get<ArtistData>(`${environment.apiUrl}/api/artists/${id}`);
+    return this.http.get<ArtistData>(`${this.endpoint}/${id}`);
+  }
+
+  getPopularArtists(): Observable<ArtistData[]> {
+    return this.http.get<ArtistData[]>(`${this.endpoint}?sort=popular`);
   }
 }

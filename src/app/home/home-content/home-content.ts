@@ -4,10 +4,11 @@ import { RouterLink } from '@angular/router';
 import { Button } from 'primeng/button';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NewConcerts } from '../../concerts/new-concerts/new-concerts';
+import { PopularArtists } from '../../artists/popular-artists/popular-artists';
 
 @Component({
   selector: 'app-home-content',
-  imports: [RouterLink, Button, NewConcerts],
+  imports: [RouterLink, Button, NewConcerts, PopularArtists],
   templateUrl: './home-content.html',
 })
 export class HomeContent {

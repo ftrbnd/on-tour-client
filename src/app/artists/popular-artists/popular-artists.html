@@ -1,0 +1,14 @@
+@if (popularArtists().length > 0) {
+<p-carousel
+  [value]="popularArtists()"
+  [numVisible]="4"
+  [numScroll]="1"
+  [circular]="true"
+  [responsiveOptions]="responsiveOptions"
+  class="gap-4"
+>
+  <ng-template let-artist #item>
+    <app-artist-card [artist]="artist" />
+  </ng-template>
+</p-carousel>
+}
