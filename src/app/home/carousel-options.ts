@@ -8,7 +8,7 @@ export const carouselResponsiveOptions: CarouselResponsiveOptions[] = [
   },
   {
     breakpoint: '1024px',
-    numVisible: 3,
+    numVisible: 2,
     numScroll: 1,
   },
   {

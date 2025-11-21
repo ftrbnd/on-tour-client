@@ -5,7 +5,7 @@
   </a>
 </div>
 
-<div class="flex flex-col md:flex-row md:flex-wrap gap-4 py-4">
+<div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
   @for (concert of concerts(); track $index) {
   <app-concert-card [concert]="concert" />
   } @empty {
