@@ -3,27 +3,22 @@
 
   <div class="flex gap-4">
     <div class="flex gap-2">
-      <a routerLink="/artists" pButton>
-        <span pButtonLabel>Artists</span>
+      <a routerLink="/artists">
+        <p-button label="Artists" variant="text" severity="secondary" />
       </a>
-      <a routerLink="/venues" pButton>
-        <span pButtonLabel>Venues</span>
+      <a routerLink="/venues">
+        <p-button label="Venues" variant="text" severity="secondary" />
       </a>
-      <a routerLink="/concerts" pButton>
-        <span pButtonLabel>Concerts</span>
+      <a routerLink="/concerts">
+        <p-button label="Concerts" variant="text" severity="secondary" />
       </a>
     </div>
     @if (!authService.isAuthenticated()) {
-    <a routerLink="/login" pButton>
-      <span pButtonLabel>Log in</span>
+    <a routerLink="/login">
+      <p-button label="Log in" variant="text" severity="info" />
     </a>
     } @else {
-    <p-button
-      (onClick)="authService.logout()"
-      label="Log out"
-      variant="outlined"
-      severity="danger"
-    />
+    <p-button (onClick)="authService.logout()" label="Log out" variant="text" severity="info" />
     }
   </div>
 </p-toolbar>
