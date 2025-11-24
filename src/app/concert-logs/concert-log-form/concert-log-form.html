@@ -1,0 +1,36 @@
+<p-button (click)="showDialog()" label="Show" />
+<p-dialog header="Log this concert" [modal]="true" [(visible)]="visible" class="w-full">
+  <span class="p-text-secondary block mb-8">
+    How was {{ concert()?.artist?.name }} at {{ concert()?.venue?.name }}?
+  </span>
+
+  <form class="w-full" [formGroup]="concertLogForm" (ngSubmit)="submitConcertLog()">
+    <p-inputgroup>
+      <p-floatlabel variant="on">
+        <textarea
+          formControlName="review"
+          pTextarea
+          id="concert_review"
+          rows="5"
+          cols="30"
+          class="h-full resize-none"
+        ></textarea>
+        <label for="concert_review">Review</label>
+      </p-floatlabel>
+    </p-inputgroup>
+
+    <p-inputgroup>
+      <p-rating formControlName="rating" />
+    </p-inputgroup>
+
+    <p-inputgroup>
+      <p-checkbox formControlName="liked" [binary]="true" />
+      <label [for]="concert()?.id">Like</label>
+    </p-inputgroup>
+
+    <div class="flex justify-end gap-2">
+      <p-button label="Cancel" severity="secondary" (click)="hideDialog()" />
+      <p-button type="submit" label="Save" />
+    </div>
+  </form>
+</p-dialog>

@@ -2,8 +2,8 @@ import { z } from 'zod/v4';
 
 export const concertLogSchema = z.object({
   id: z.number(),
-  review: z.string(),
-  rating: z.number(),
+  review: z.string().max(300),
+  rating: z.number().min(1).max(5),
   liked: z.boolean(),
   concertId: z.number(),
   userId: z.string(),

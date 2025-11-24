@@ -3,12 +3,11 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { ConcertLogData } from './concert-log-data';
-import { ConcertFormValues } from '../concerts/concert-data';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ConcertLogService {
+export class ConcertLogsService {
   private http = inject(HttpClient);
   private endpoint = `${environment.apiUrl}/api/concertlogs`;
 
@@ -20,7 +19,7 @@ export class ConcertLogService {
     return this.http.get<ConcertLogData>(`${this.endpoint}/${id}`);
   }
 
-  createConcertLog(data: ConcertFormValues): Observable<ConcertLogData> {
+  createConcertLog(data: ConcertLogData): Observable<ConcertLogData> {
     return this.http.post<ConcertLogData>(this.endpoint, data);
   }
 }
