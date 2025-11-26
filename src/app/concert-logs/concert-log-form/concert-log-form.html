@@ -1,7 +1,6 @@
-<p-button (click)="showDialog()" label="Show" />
 <p-dialog header="Log this concert" [modal]="true" [(visible)]="visible" class="w-full">
   <span class="p-text-secondary block mb-8">
-    How was {{ concert()?.artist?.name }} at {{ concert()?.venue?.name }}?
+    How was {{ concert().artist?.name }} at {{ concert().venue?.name }}?
   </span>
 
   <form class="w-full" [formGroup]="concertLogForm" (ngSubmit)="submitConcertLog()">
@@ -25,11 +24,11 @@
 
     <p-inputgroup>
       <p-checkbox formControlName="liked" [binary]="true" />
-      <label [for]="concert()?.id">Like</label>
+      <label [for]="concert().id">Like</label>
     </p-inputgroup>
 
     <div class="flex justify-end gap-2">
-      <p-button label="Cancel" severity="secondary" (click)="hideDialog()" />
+      <p-button label="Cancel" severity="secondary" (click)="visible.set(false)" />
       <p-button type="submit" label="Save" />
     </div>
   </form>

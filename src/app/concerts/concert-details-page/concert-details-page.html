@@ -16,8 +16,6 @@
 
 <app-concert-action-buttons [concert]="concert()" />
 
-<app-concert-log-form [concert]="concert()" />
-
 @if (concert()?.concertLogs) { @for (log of concert()?.concertLogs; track $index) {
 <p>{{ log.review }}</p>
 } }

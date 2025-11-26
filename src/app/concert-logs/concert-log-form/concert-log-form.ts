@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, model, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { Dialog } from 'primeng/dialog';
 import { ConcertData } from '../../concerts/concert-data';
@@ -24,9 +24,8 @@ import { CheckboxModule } from 'primeng/checkbox';
   templateUrl: './concert-log-form.html',
 })
 export class ConcertLogForm {
-  concert = input<ConcertData>();
-  visible = signal(false);
-
+  concert = input.required<ConcertData>();
+  visible = model.required<boolean>();
   concertLogsService = inject(ConcertLogsService);
 
   concertLogForm = new FormGroup({
@@ -34,14 +33,6 @@ export class ConcertLogForm {
     rating: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(5)]),
     liked: new FormControl(false, [Validators.required]),
   });
-
-  showDialog() {
-    this.visible.set(true);
-  }
-
-  hideDialog() {
-    this.visible.set(false);
-  }
 
   submitConcertLog() {
     const { data: validConcertLog, error } = concertLogFormSchema.safeParse({
@@ -54,9 +45,7 @@ export class ConcertLogForm {
     } else {
       this.concertLogsService.createConcertLog(validConcertLog).subscribe({
         error: (err) => console.error(err),
-        next: () => {
-          this.hideDialog();
-        },
+        next: () => this.visible.set(false),
       });
     }
   }

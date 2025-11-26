@@ -4,8 +4,10 @@
     <span pButtonLabel>Save</span>
   </button>
 
-  <button class="w-full" pButton>
+  <button (click)="dialogVisible.set(true)" class="w-full" pButton>
     <i class="pi pi-pencil" pButtonIcon></i>
     <span pButtonLabel>Log</span>
   </button>
+
+  <app-concert-log-form [concert]="concert()" [(visible)]="dialogVisible" />
 </div>
