@@ -7,6 +7,8 @@ export const concertSchema = z.object({
   id: z.number(),
   date: z.string(),
   tour: z.string(),
+  artistId: z.string(),
+  venueId: z.string(),
   get venue() {
     return venueSchema.omit({ concerts: true }).optional();
   },

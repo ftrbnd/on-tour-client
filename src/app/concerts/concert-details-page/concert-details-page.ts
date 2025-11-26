@@ -5,10 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { ConcertActionButtons } from '../shared/concert-action-buttons/concert-action-buttons';
+import { ConcertLog } from '../../concert-logs/concert-log/concert-log';
 
 @Component({
   selector: 'app-concert-details-page',
-  imports: [DatePipe, ConcertActionButtons],
+  imports: [DatePipe, ConcertActionButtons, ConcertLog],
   templateUrl: './concert-details-page.html',
 })
 export class ConcertDetailsPage {

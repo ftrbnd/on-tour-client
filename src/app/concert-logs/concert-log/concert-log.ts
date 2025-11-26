@@ -1,12 +1,14 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { ConcertLogData } from '../concert-log-data';
-import { JsonPipe } from '@angular/common';
+import { CardModule } from 'primeng/card';
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-concert-log',
-  imports: [JsonPipe],
+  imports: [CardModule, RatingModule, FormsModule],
   templateUrl: './concert-log.html',
 })
 export class ConcertLog {
-  concertLog = input<ConcertLogData>();
+  concertLog = input.required<ConcertLogData>();
 }

@@ -17,5 +17,5 @@
 @if (concert(); as concert ) {
 <app-concert-action-buttons [concert]="concert" />
 } @if (concert()?.concertLogs) { @for (log of concert()?.concertLogs; track $index) {
-<p>{{ log.review }}</p>
+<app-concert-log [concertLog]="log" />
 } }
