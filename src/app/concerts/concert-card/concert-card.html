@@ -1,14 +1,14 @@
-@if (concert()) {
+@if (concert(); as concert) {
 <p-card class="overflow-hidden w-full sm:max-w-64 md:max-w-72 2xl:max-w-96 h-full">
   <ng-template #header>
     <div class="relative">
       <img
-        [alt]="concert()?.venue?.name"
+        [alt]="concert.venue?.name"
         class="w-full h-48 object-cover"
-        [src]="concert()?.venue?.imageUrl"
+        [src]="concert.venue?.imageUrl"
       />
       <p-avatar
-        [image]="concert()?.artist?.imageUrl"
+        [image]="concert.artist?.imageUrl"
         class="mr-2 absolute inset-y-40 inset-x-4 border-2 border-primary"
         size="xlarge"
         shape="circle"
@@ -16,22 +16,20 @@
     </div>
   </ng-template>
   <ng-template #title>
-    <a [routerLink]="['/concerts', concert()?.id]" class="hover:brightness-80 hover:underline">
-      <h2 class="mt-4 line-clamp-1">
-        {{ concert()?.artist?.name }} at {{ concert()?.venue?.name }}
-      </h2>
+    <a [routerLink]="['/concerts', concert.id]" class="hover:brightness-80 hover:underline">
+      <h2 class="mt-4 line-clamp-1">{{ concert.artist?.name }} at {{ concert.venue?.name }}</h2>
     </a>
   </ng-template>
 
-  <ng-template #subtitle> {{ concert()?.tour }} </ng-template>
+  <ng-template #subtitle> {{ concert.tour }} </ng-template>
   <p>
-    {{ concert()?.venue?.city }},
-    {{ concert()?.venue?.country === 'USA' ? concert()?.venue?.state : concert()?.venue?.country }}
+    {{ concert.venue?.city }},
+    {{ concert.venue?.country === 'USA' ? concert.venue?.state : concert.venue?.country }}
   </p>
 
   @if (isAuthenticated) {
   <ng-template #footer>
-    <app-concert-action-buttons [concert]="concert()" />
+    <app-concert-action-buttons [concert]="concert" />
   </ng-template>
   }
 </p-card>
