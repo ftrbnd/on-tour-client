@@ -4,10 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { VenuesService } from '../../venues/venues-service';
 import { ConcertPreview } from '../../concerts/concert-preview/concert-preview';
+import { CreateConcertLink } from '../../concerts/create-concert-link/create-concert-link';
 
 @Component({
   selector: 'app-venue-page',
-  imports: [ConcertPreview],
+  imports: [ConcertPreview, CreateConcertLink],
   templateUrl: './venue-page.html',
 })
 export class VenuePage {

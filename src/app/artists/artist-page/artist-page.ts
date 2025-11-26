@@ -4,10 +4,11 @@ import { ArtistsService } from '../artists-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs/operators';
 import { ConcertPreview } from '../../concerts/concert-preview/concert-preview';
+import { CreateConcertLink } from '../../concerts/create-concert-link/create-concert-link';
 
 @Component({
   selector: 'app-artist-page',
-  imports: [ConcertPreview],
+  imports: [ConcertPreview, CreateConcertLink],
   templateUrl: './artist-page.html',
 })
 export class ArtistPage {

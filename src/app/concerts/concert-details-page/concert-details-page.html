@@ -14,8 +14,20 @@
 
 <p class="my-4">{{ concertDate() | date : 'longDate' }}</p>
 
-@if (concert(); as concert ) {
+@if (authService.isAuthenticated()) { @if (concert(); as concert) {
 <app-concert-action-buttons [concert]="concert" />
-} @if (concert()?.concertLogs) { @for (log of concert()?.concertLogs; track $index) {
+}} @for (log of concert()?.concertLogs; track $index) {
 <app-concert-log [concertLog]="log" />
-} }
+} @empty {
+<p-card>
+  <div class="flex gap-2 flex-col items-center justify-center">
+    <p>No one attended this concert yet.</p>
+    @if (authService.isAuthenticated()) {
+    <p class="font-bold text-primary">Add your review!</p>
+    } @else {
+    <a routerLink="/login" class="underline text-primary">Sign in to write a review</a>
+    }
+  </div>
+</p-card>
+
+}
