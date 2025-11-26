@@ -1,4 +1,5 @@
 import { artistSchema } from '../artists/artist-data';
+import { concertLogSchema } from '../concert-logs/concert-log-data';
 import { venueSchema } from '../venues/venue-data';
 import { z } from 'zod/v4';
 
@@ -12,7 +13,9 @@ export const concertSchema = z.object({
   get artist() {
     return artistSchema.omit({ concerts: true }).optional();
   },
-  attendees: z.array(z.any()), // TODO: add User schema
+  get concertLogs() {
+    return concertLogSchema.array().optional();
+  },
 });
 export type ConcertData = z.infer<typeof concertSchema>;
 
@@ -22,6 +25,7 @@ export const concertFormSchema = concertSchema
     attendees: true,
     artist: true,
     venue: true,
+    concertLogs: true,
   })
   .extend({
     artistId: z.number(),

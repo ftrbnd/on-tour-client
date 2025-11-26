@@ -5,7 +5,7 @@ import { ConcertData } from '../../concerts/concert-data';
 import { Rating } from 'primeng/rating';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ConcertLogsService } from '../concert-logs-service';
-import { concertLogSchema } from '../concert-log-data';
+import { concertLogFormSchema } from '../concert-log-data';
 import { InputGroup } from 'primeng/inputgroup';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -44,14 +44,19 @@ export class ConcertLogForm {
   }
 
   submitConcertLog() {
-    const { data: validConcertLog, error } = concertLogSchema.safeParse(this.concertLogForm.value);
+    const { data: validConcertLog, error } = concertLogFormSchema.safeParse({
+      ...this.concertLogForm.value,
+      concertId: this.concert()?.id,
+    });
 
     if (error) {
       console.error(error);
     } else {
       this.concertLogsService.createConcertLog(validConcertLog).subscribe({
         error: (err) => console.error(err),
-        next: () => this.hideDialog(),
+        next: () => {
+          this.hideDialog();
+        },
       });
     }
   }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
-import { ConcertLogData } from './concert-log-data';
+import { ConcertLogData, ConcertLogFormValues } from './concert-log-data';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class ConcertLogsService {
     return this.http.get<ConcertLogData>(`${this.endpoint}/${id}`);
   }
 
-  createConcertLog(data: ConcertLogData): Observable<ConcertLogData> {
+  createConcertLog(data: ConcertLogFormValues): Observable<ConcertLogData> {
     return this.http.post<ConcertLogData>(this.endpoint, data);
   }
 }
