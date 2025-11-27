@@ -8,7 +8,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { Button } from 'primeng/button';
-
+import { InputTextModule } from 'primeng/inputtext';
 @Component({
   selector: 'app-register',
   imports: [
@@ -19,6 +19,7 @@ import { Button } from 'primeng/button';
     FloatLabelModule,
     Button,
     RouterLink,
+    InputTextModule,
   ],
   templateUrl: './register.html',
 })

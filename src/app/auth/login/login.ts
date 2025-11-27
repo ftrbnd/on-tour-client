@@ -9,6 +9,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { Button } from 'primeng/button';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ import { Router } from '@angular/router';
     FloatLabelModule,
     Button,
     RouterLink,
+    InputTextModule,
   ],
 })
 export class Login {

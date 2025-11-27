@@ -1,42 +1,41 @@
-<a [routerLink]="['concerts', concert()?.id]">
-  <p-card>
-    <div class="flex gap-2 items-center flex-col md:flex-row">
+<p-card>
+  <div class="flex gap-2 items-center flex-col md:flex-row">
+    @if (concert(); as concert) {
+    <img
+      [src]="concert.artist?.imageUrl"
+      [alt]="concert.artist?.name"
+      class="w-full h-24 md:w-24 md:h-full object-cover rounded-sm md:rounded-md"
+    />
+    }
+
+    <div class="flex flex-col">
       @if (concert(); as concert) {
-      <img
-        [src]="concert.artist?.imageUrl"
-        [alt]="concert.artist?.name"
-        class="w-full h-24 md:w-24 md:h-full object-cover rounded-sm md:rounded-md"
-      />
-      }
-
-      <div class="flex flex-col">
-        @if (concert(); as concert) {
+      <a class="hover:underline" [routerLink]="['concerts', concert.id]">
         <p class="font-bold">{{ concert.artist?.name }} - {{ concert.tour }}</p>
-        }
-        <div class="flex fl ex-col items-start md:flex-row md:items-center gap-2">
-          <p class="text-muted-color">
-            Reviewed by
-            <span class="font-bold text-muted-color-emphasis">{{
-              concertLog().user?.username
-            }}</span>
-          </p>
+      </a>
 
-          <div class="flex gap-2 items-center">
-            <p-rating [(ngModel)]="concertLog().rating" [readonly]="true" />
+      }
+      <div class="flex fl ex-col items-start md:flex-row md:items-center gap-2">
+        <p class="text-muted-color">
+          Reviewed by
+          <span class="font-bold text-muted-color-emphasis">{{ concertLog().user?.username }}</span>
+        </p>
 
-            @if (concertLog().liked) {
-            <i class="pi pi-heart-fill text-red-500"></i>
-            } @else {
-            <i class="pi pi-heart"></i>
-            }
-          </div>
+        <div class="flex gap-2 items-center">
+          <p-rating [(ngModel)]="concertLog().rating" [readonly]="true" />
+
+          @if (concertLog().liked) {
+          <i class="pi pi-heart-fill text-red-500"></i>
+          } @else {
+          <i class="pi pi-heart"></i>
+          }
         </div>
-
-        <p class="pt-4 pb-2">{{ concertLog().review }}</p>
-        @if (concert(); as concert) {
-        <p class="text-muted-color text-xs text-end">{{ concert.date | date : 'shortDate' }}</p>
-        }
       </div>
+
+      <p class="pt-4 pb-2">{{ concertLog().review }}</p>
+      @if (concert(); as concert) {
+      <p class="text-muted-color text-xs text-end">{{ concert.date | date : 'shortDate' }}</p>
+      }
     </div>
-  </p-card>
-</a>
+  </div>
+</p-card>
