@@ -3,6 +3,7 @@ import { ConcertLogData } from '../concert-log-data';
 import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
+import { ConcertData } from '../../concerts/concert-data';
 
 @Component({
   selector: 'app-concert-log',
@@ -11,4 +12,5 @@ import { FormsModule } from '@angular/forms';
 })
 export class ConcertLog {
   concertLog = input.required<ConcertLogData>();
+  concert = input<ConcertData>();
 }

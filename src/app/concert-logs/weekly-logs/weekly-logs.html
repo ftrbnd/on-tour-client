@@ -8,7 +8,7 @@
   class="gap-4"
 >
   <ng-template let-log #item>
-    <app-concert-log [concertLog]="log" />
+    <app-concert-log [concertLog]="log" [concert]="log.concert" />
   </ng-template>
 </p-carousel>
 }
