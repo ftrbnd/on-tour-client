@@ -1,0 +1,14 @@
+@if (weeklyLogs().length > 0) {
+<p-carousel
+  [value]="weeklyLogs()"
+  [numVisible]="3"
+  [numScroll]="1"
+  [circular]="true"
+  [responsiveOptions]="responsiveOptions"
+  class="gap-4"
+>
+  <ng-template let-log #item>
+    <app-concert-log [concertLog]="log" />
+  </ng-template>
+</p-carousel>
+}

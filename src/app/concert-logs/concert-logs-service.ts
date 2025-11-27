@@ -22,4 +22,8 @@ export class ConcertLogsService {
   createConcertLog(data: ConcertLogFormValues): Observable<ConcertLogData> {
     return this.http.post<ConcertLogData>(this.endpoint, data);
   }
+
+  getWeeklyConcertLogs(): Observable<ConcertLogData[]> {
+    return this.http.get<ConcertLogData[]>(`${this.endpoint}?sort=weekly`);
+  }
 }
