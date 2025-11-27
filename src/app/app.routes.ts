@@ -10,6 +10,7 @@ import { authGuard } from './auth/auth-guard';
 import { Register } from './auth/register/register';
 import { ConcertDetailsPage } from './concerts/concert-details-page/concert-details-page';
 import { HomeContent } from './home/home-content/home-content';
+import { UserPage } from './users/user-page/user-page';
 
 export const routes: Routes = [
   { path: '', component: HomeContent },
@@ -22,4 +23,5 @@ export const routes: Routes = [
   { path: 'concerts/:id', component: ConcertDetailsPage },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
+  { path: 'user/:username', component: UserPage },
 ];

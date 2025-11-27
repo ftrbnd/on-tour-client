@@ -18,7 +18,10 @@
       <p-button label="Log in" variant="text" severity="info" />
     </a>
     } @else {
-    <p-button (onClick)="authService.logout()" label="Log out" variant="text" severity="info" />
+    <a [routerLink]="['user', authService.authStatus()?.username]">
+      <p-button [label]="authService.authStatus()?.username" variant="text" severity="info" />
+    </a>
+
     }
   </div>
 </p-toolbar>

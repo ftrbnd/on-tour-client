@@ -16,6 +16,7 @@ import { AuthService } from '../auth/auth-service';
     InputTextModule,
     IconFieldModule,
     InputIconModule,
+    RouterLink,
   ],
   templateUrl: './navbar.html',
 })
