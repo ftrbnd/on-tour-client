@@ -1,9 +1,18 @@
-<p-dialog header="Log this concert" [modal]="true" [(visible)]="visible" class="w-full">
+<p-dialog
+  header="Log this concert"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '40rem' }"
+>
   <span class="p-text-secondary block mb-8">
     How was {{ concert().artist?.name }} at {{ concert().venue?.name }}?
   </span>
 
-  <form class="w-full" [formGroup]="concertLogForm" (ngSubmit)="submitConcertLog()">
+  <form
+    class="w-full flex flex-col gap-4"
+    [formGroup]="concertLogForm"
+    (ngSubmit)="submitConcertLog()"
+  >
     <p-inputgroup>
       <p-floatlabel variant="on">
         <textarea
@@ -12,19 +21,28 @@
           id="concert_review"
           rows="5"
           cols="30"
-          class="h-full resize-none"
+          fluid
+          class="resize-none"
         ></textarea>
         <label for="concert_review">Review</label>
       </p-floatlabel>
     </p-inputgroup>
 
-    <p-inputgroup>
+    <p-inputgroup class="flex flex-col">
+      <label class="text-muted-color" for="rating">Rating</label>
       <p-rating formControlName="rating" />
     </p-inputgroup>
 
-    <p-inputgroup>
-      <p-checkbox formControlName="liked" [binary]="true" />
-      <label [for]="concert().id">Like</label>
+    <p-inputgroup class="flex gap-2 items-center">
+      <p-togglebutton
+        formControlName="liked"
+        onLabel="Unlike"
+        onIcon="pi pi-heart-fill"
+        offLabel="Like"
+        offIcon="pi pi-heart"
+        size="small"
+        ariaLabel="Did you like the concert?"
+      />
     </p-inputgroup>
 
     <div class="flex justify-end gap-2">

@@ -9,6 +9,8 @@ import { concertLogFormSchema } from '../concert-log-data';
 import { InputGroup } from 'primeng/inputgroup';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { TextareaModule } from 'primeng/textarea';
 
 @Component({
   selector: 'app-concert-log-form',
@@ -20,6 +22,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     InputGroup,
     FloatLabelModule,
     CheckboxModule,
+    ToggleButtonModule,
+    TextareaModule,
   ],
   templateUrl: './concert-log-form.html',
 })
