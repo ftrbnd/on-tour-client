@@ -1,5 +1,6 @@
 import { z } from 'zod/v4';
 import { concertSchema } from '../concerts/concert-data';
+import { userSchema } from '../users/user-data';
 
 export const concertLogSchema = z.object({
   id: z.number(),
@@ -12,13 +13,7 @@ export const concertLogSchema = z.object({
     return concertSchema.omit({ concertLogs: true }).optional();
   },
   get user() {
-    return z
-      .object({
-        id: z.string(),
-        username: z.string(),
-        email: z.email(),
-      })
-      .optional();
+    return userSchema.omit({ concertLogs: true }).optional();
   },
 });
 export type ConcertLogData = z.infer<typeof concertLogSchema>;

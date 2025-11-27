@@ -15,4 +15,5 @@ import { RouterLink } from '@angular/router';
 export class ConcertLog {
   concertLog = input.required<ConcertLogData>();
   concert = input<ConcertData>();
+  onUsersProfilePage = input<boolean>(false);
 }

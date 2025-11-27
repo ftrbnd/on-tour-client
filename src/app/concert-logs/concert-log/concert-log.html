@@ -1,4 +1,4 @@
-<p-card>
+<p-card class="h-full">
   <div class="flex gap-2 items-center flex-col md:flex-row">
     @if (concert(); as concert) {
     <img
@@ -16,10 +16,16 @@
 
       }
       <div class="flex fl ex-col items-start md:flex-row md:items-center gap-2">
+        @if (!onUsersProfilePage()){
         <p class="text-muted-color">
           Reviewed by
-          <span class="font-bold text-muted-color-emphasis">{{ concertLog().user?.username }}</span>
+          <a
+            [routerLink]="['user', concertLog().user?.username]"
+            class="font-bold text-muted-color-emphasis hover:underline"
+            >{{ concertLog().user?.username }}</a
+          >
         </p>
+        }
 
         <div class="flex gap-2 items-center">
           <p-rating [(ngModel)]="concertLog().rating" [readonly]="true" />
@@ -32,7 +38,7 @@
         </div>
       </div>
 
-      <p class="pt-4 pb-2">{{ concertLog().review }}</p>
+      <p class="pt-4 pb-2 line-clamp-3">{{ concertLog().review }}</p>
       @if (concert(); as concert) {
       <p class="text-muted-color text-xs text-end">{{ concert.date | date : 'shortDate' }}</p>
       }
