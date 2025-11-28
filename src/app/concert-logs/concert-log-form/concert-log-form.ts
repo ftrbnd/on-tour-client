@@ -1,4 +1,4 @@
-import { Component, inject, input, model, output } from '@angular/core';
+import { Component, inject, input, model } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { Dialog } from 'primeng/dialog';
 import { ConcertData } from '../../concerts/concert-data';
@@ -33,7 +33,11 @@ export class ConcertLogForm {
   concertLogsService = inject(ConcertLogsService);
 
   concertLogForm = new FormGroup({
-    review: new FormControl('', [Validators.required, Validators.maxLength(300)]),
+    review: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1),
+      Validators.maxLength(300),
+    ]),
     rating: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(5)]),
     liked: new FormControl(false, [Validators.required]),
   });

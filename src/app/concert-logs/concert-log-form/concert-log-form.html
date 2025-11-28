@@ -47,7 +47,7 @@
 
     <div class="flex justify-end gap-2">
       <p-button label="Cancel" severity="secondary" (click)="visible.set(false)" />
-      <p-button type="submit" label="Save" />
+      <p-button [disabled]="!concertLogForm.valid" type="submit" label="Save" />
     </div>
   </form>
 </p-dialog>
