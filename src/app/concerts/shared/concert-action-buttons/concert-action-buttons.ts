@@ -1,4 +1,4 @@
-import { Component, input, model, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { ConcertData } from '../../concert-data';
 import { ButtonModule } from 'primeng/button';
 import { ConcertLogForm } from '../../../concert-logs/concert-log-form/concert-log-form';
@@ -11,4 +11,6 @@ import { ConcertLogForm } from '../../../concert-logs/concert-log-form/concert-l
 export class ConcertActionButtons {
   concert = input.required<ConcertData>();
   dialogVisible = signal(false);
+
+  fullWidth = input(true);
 }

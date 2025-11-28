@@ -1,13 +1,8 @@
-<div class="flex w-full justify-between gap-4 mt-1">
-  <button class="w-full" pButton severity="secondary">
-    <i class="pi pi-plus" pButtonIcon></i>
-    <span pButtonLabel>Save</span>
-  </button>
-
-  <button (click)="dialogVisible.set(true)" class="w-full" pButton>
+<div class="flex gap-4 mt-1">
+  <button [class]="fullWidth() ? 'w-full' : ''" (click)="dialogVisible.set(true)" pButton>
     <i class="pi pi-pencil" pButtonIcon></i>
     <span pButtonLabel>Log</span>
   </button>
-
-  <app-concert-log-form [concert]="concert()" [(visible)]="dialogVisible" />
 </div>
+
+<app-concert-log-form [concert]="concert()" [(visible)]="dialogVisible" />
