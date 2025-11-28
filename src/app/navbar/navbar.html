@@ -3,14 +3,26 @@
 
   <div class="flex gap-4">
     <div class="flex gap-2">
-      <a routerLink="/artists">
-        <p-button label="Artists" variant="text" severity="secondary" />
+      <a
+        routerLink="/artists"
+        class="text-muted-color font-bold self-center py-2 px-3 hover:underline"
+        routerLinkActive="text-primary"
+      >
+        Artists
       </a>
-      <a routerLink="/venues">
-        <p-button label="Venues" variant="text" severity="secondary" />
+      <a
+        routerLink="/venues"
+        class="text-muted-color font-bold self-center py-2 px-3 hover:underline"
+        routerLinkActive="text-primary"
+      >
+        Venues
       </a>
-      <a routerLink="/concerts">
-        <p-button label="Concerts" variant="text" severity="secondary" />
+      <a
+        routerLink="/concerts"
+        class="text-muted-color font-bold self-center py-2 px-3 hover:underline"
+        routerLinkActive="text-primary"
+      >
+        Concerts
       </a>
     </div>
     @if (!authService.isAuthenticated()) {

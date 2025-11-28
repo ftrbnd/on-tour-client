@@ -11,13 +11,11 @@
 <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
   @for (log of user()?.concertLogs; track $index) {
   <app-concert-log [concertLog]="log" [concert]="log.concert" [onUsersProfilePage]="true" />
-  } @empty {
-  <div class="flex flex-col items-center w-full">
-    <p class="text-muted-color">No logs yet.</p>
-    <p class="font-bold">
-      Did you attend a concert recently?
-      <a routerLink="/concerts/new" class="text-primary underline">Add it here.</a>
-    </p>
-  </div>
   }
+</div>
+
+<div class="flex flex-col items-center w-full">
+  <a routerLink="/concerts/new" class="font-bold text-primary underline">
+    <p-button label="Add a new concert" variant="text" />
+  </a>
 </div>

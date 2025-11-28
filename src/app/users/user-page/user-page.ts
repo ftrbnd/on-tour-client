@@ -1,16 +1,15 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { AuthService } from '../../auth/auth-service';
 import { ButtonModule } from 'primeng/button';
 import { UsersService } from '../users-service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { ConcertLog } from '../../concert-logs/concert-log/concert-log';
-import { UserData } from '../user-data';
 
 @Component({
   selector: 'app-user-page',
-  imports: [ButtonModule, ConcertLog],
+  imports: [ButtonModule, ConcertLog, RouterLink],
   templateUrl: './user-page.html',
 })
 export class UserPage {

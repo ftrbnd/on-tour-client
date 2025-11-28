@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -17,6 +17,7 @@ import { AuthService } from '../auth/auth-service';
     IconFieldModule,
     InputIconModule,
     RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './navbar.html',
 })
