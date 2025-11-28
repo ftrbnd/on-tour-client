@@ -27,7 +27,7 @@
     {{ concert.venue?.country === 'USA' ? concert.venue?.state : concert.venue?.country }}
   </p>
 
-  @if (isAuthenticated) {
+  @if (isAuthenticated && showActionButtons()) {
   <ng-template #footer>
     <app-concert-action-buttons [concert]="concert" />
   </ng-template>

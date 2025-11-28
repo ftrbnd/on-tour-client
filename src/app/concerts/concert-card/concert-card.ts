@@ -16,4 +16,5 @@ import { AuthService } from '../../auth/auth-service';
 export class ConcertCard {
   concert = input<ConcertData>();
   isAuthenticated = inject(AuthService).isAuthenticated();
+  showActionButtons = input<boolean>(true);
 }
