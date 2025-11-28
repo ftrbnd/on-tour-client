@@ -27,5 +27,5 @@ export class UserPage {
     )
   );
 
-  isMyPage = computed(() => this.user()?.username === this.authService.authStatus()?.username);
+  isMyPage = computed(() => this.user()?.username === this.authService.authUser()?.username);
 }

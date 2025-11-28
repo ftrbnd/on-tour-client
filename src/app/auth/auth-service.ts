@@ -1,8 +1,9 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment.development';
-import { AuthStatus, AuthRequest, AuthResponse, TOKEN_KEY } from './auth-options';
+import { AuthRequest, AuthResponse, TOKEN_KEY } from './auth-options';
 import { Observable } from 'rxjs';
+import { UserData } from '../users/user-data';
 
 @Injectable({
   providedIn: 'root',
@@ -10,17 +11,17 @@ import { Observable } from 'rxjs';
 export class AuthService {
   http = inject(HttpClient);
 
-  authStatus = signal<AuthStatus | null>(null);
-  isAuthenticated = computed(() => this.authStatus() !== null);
+  authUser = signal<UserData | null>(null);
+  isAuthenticated = computed(() => this.authUser() !== null);
 
   init() {
     this.getUser().subscribe({
       next: (res) => {
-        this.authStatus.set(res);
+        this.authUser.set(res);
       },
       error: (err) => {
         console.error(err);
-        this.authStatus.set(null);
+        this.authUser.set(null);
       },
     });
   }
@@ -36,7 +37,7 @@ export class AuthService {
   }
 
   getUser() {
-    return this.http.get<AuthStatus>(`${environment.apiUrl}/api/auth/me`);
+    return this.http.get<UserData>(`${environment.apiUrl}/api/auth/me`);
   }
 
   register(request: AuthRequest) {
@@ -49,6 +50,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(TOKEN_KEY);
-    this.authStatus.set(null);
+    this.authUser.set(null);
   }
 }

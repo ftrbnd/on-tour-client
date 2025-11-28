@@ -2,7 +2,13 @@
   <h2 class="text-4xl font-bold">{{ user()?.username }}</h2>
 
   @if (authService.isAuthenticated()) {
-  <p-button (onClick)="authService.logout()" label="Log out" variant="text" severity="info" />
+  <p-button
+    (onClick)="authService.logout()"
+    label="Log out"
+    variant="text"
+    severity="danger"
+    variant="outlined"
+  />
   }
 </div>
 

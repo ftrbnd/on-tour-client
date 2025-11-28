@@ -4,28 +4,30 @@
     <img
       [src]="concert.artist?.imageUrl"
       [alt]="concert.artist?.name"
-      class="w-full h-24 md:w-24 md:h-full object-cover rounded-sm md:rounded-md"
+      class="self-start w-full h-24 md:w-24 md:h-full object-cover rounded-sm md:rounded-md"
     />
     }
 
-    <div class="flex flex-col">
-      @if (concert(); as concert) {
-      <a class="hover:underline" [routerLink]="['concerts', concert.id]">
-        <p class="font-bold">{{ concert.artist?.name }} - {{ concert.tour }}</p>
-      </a>
-
-      }
-      <div class="flex fl ex-col items-start md:flex-row md:items-center gap-2">
-        @if (!onUsersProfilePage()){
-        <p class="text-muted-color">
-          Reviewed by
-          <a
-            [routerLink]="['user', concertLog().user?.username]"
-            class="font-bold text-muted-color-emphasis hover:underline"
-            >{{ concertLog().user?.username }}</a
-          >
-        </p>
+    <div class="flex flex-col ml-2 w-full">
+      <div class="flex flex-col items-start md:flex-row flex-wrap md:items-center gap-2">
+        @if (concert(); as concert) {
+        <a class="hover:underline" [routerLink]="['/concerts', concert.id]">
+          <p class="font-bold">{{ concert.artist?.name }} - {{ concert.tour }}</p>
+        </a>
         }
+
+        <div class="flex items-center justify-between w-full">
+          @if (!onUsersProfilePage()){
+          <p class="text-muted-color">
+            Reviewed by
+            <a
+              [routerLink]="['/user', concertLog().user?.username]"
+              class="font-bold text-muted-color-emphasis hover:underline"
+              >{{ concertLog().user?.username }}</a
+            >
+          </p>
+          }
+        </div>
 
         <div class="flex gap-2 items-center">
           <p-rating [(ngModel)]="concertLog().rating" [readonly]="true" />
@@ -43,5 +45,17 @@
       <p class="text-muted-color text-xs text-end">{{ concert.date | date : 'shortDate' }}</p>
       }
     </div>
+
+    @if (authService.authUser()?.id == concertLog().userId ) {
+    <!-- TODO: include user in concertLog request -->
+    <p-menu #menu [model]="items" [popup]="true" />
+    <p-button
+      class="self-end md:self-start"
+      size="small"
+      severity="secondary"
+      (click)="menu.toggle($event)"
+      icon="pi pi-ellipsis-v"
+    />
+    }
   </div>
 </p-card>
