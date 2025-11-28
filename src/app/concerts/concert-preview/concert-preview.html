@@ -1,9 +1,17 @@
 <a [routerLink]="['/concerts', concert()?.id]" class="hover:opacity-80">
   <div class="flex rounded-md bg-surface-900 h-36">
     @if (currentPage() === "venue") {
-    <img [src]="concert()?.artist?.imageUrl" [alt]="concert()?.artist?.name" class="rounded-sm" />
+    <img
+      [src]="concert()?.artist?.imageUrl"
+      [alt]="concert()?.artist?.name"
+      class="rounded-sm h-full w-36 object-cover"
+    />
     } @else if (currentPage() === "artist") {
-    <img [src]="concert()?.venue?.imageUrl" [alt]="concert()?.venue?.name" class="rounded-sm" />
+    <img
+      [src]="concert()?.venue?.imageUrl"
+      [alt]="concert()?.venue?.name"
+      class="rounded-sm h-full w-36 object-cover"
+    />
     }
 
     <div class="flex flex-col justify-between p-2 md:p-4">

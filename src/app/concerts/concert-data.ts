@@ -5,7 +5,7 @@ import { z } from 'zod/v4';
 
 export const concertSchema = z.object({
   id: z.number(),
-  date: z.string(),
+  date: z.date(),
   tour: z.string(),
   artistId: z.string(),
   venueId: z.string(),
@@ -24,7 +24,6 @@ export type ConcertData = z.infer<typeof concertSchema>;
 export const concertFormSchema = concertSchema
   .omit({
     id: true,
-    attendees: true,
     artist: true,
     venue: true,
     concertLogs: true,
