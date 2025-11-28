@@ -21,6 +21,16 @@ export type ConcertLogData = z.infer<typeof concertLogSchema>;
 export const concertLogFormSchema = concertLogSchema.omit({
   id: true,
   userId: true,
+  concert: true,
+  user: true,
 });
-
 export type ConcertLogFormValues = z.infer<typeof concertLogFormSchema>;
+
+export const updateConcertLogFormSchema = concertLogFormSchema
+  .omit({
+    concertId: true,
+  })
+  .extend({
+    id: z.number(),
+  });
+export type UpdateConcertLogFormValues = z.infer<typeof updateConcertLogFormSchema>;

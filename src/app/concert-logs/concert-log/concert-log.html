@@ -40,14 +40,13 @@
         </div>
       </div>
 
-      <p class="pt-4 pb-2 line-clamp-3">{{ concertLog().review }}</p>
+      <p class="pt-4 pb-2 line-clamp-3 md:line-clamp-5">{{ concertLog().review }}</p>
       @if (concert(); as concert) {
       <p class="text-muted-color text-xs text-end">{{ concert.date | date : 'shortDate' }}</p>
       }
     </div>
 
-    @if (authService.authUser()?.id == concertLog().userId ) {
-    <!-- TODO: include user in concertLog request -->
+    @if (authService.authUser()?.id == concertLog().userId && showMenu()) {
     <p-menu #menu [model]="items" [popup]="true" />
     <p-button
       class="self-end md:self-start"
@@ -56,6 +55,13 @@
       (click)="menu.toggle($event)"
       icon="pi pi-ellipsis-v"
     />
+
+    <app-concert-log-form
+      [concert]="concert()"
+      [previousConcertLog]="concertLog()"
+      [(visible)]="showEdit"
+    />
+
     }
   </div>
 </p-card>

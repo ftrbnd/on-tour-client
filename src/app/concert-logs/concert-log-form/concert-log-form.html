@@ -5,14 +5,11 @@
   [style]="{ width: '40rem' }"
 >
   <span class="p-text-secondary block mb-8">
-    How was {{ concert().artist?.name }} at {{ concert().venue?.name }}?
+    @if (previousConcertLog()){ Update your review} @else { How was
+    {{ concert()?.artist?.name }} at {{ concert()?.venue?.name }}? }
   </span>
 
-  <form
-    class="w-full flex flex-col gap-4"
-    [formGroup]="concertLogForm"
-    (ngSubmit)="submitConcertLog()"
-  >
+  <form class="w-full flex flex-col gap-4" [formGroup]="concertLogForm" (ngSubmit)="submit()">
     <p-inputgroup>
       <p-floatlabel variant="on">
         <textarea

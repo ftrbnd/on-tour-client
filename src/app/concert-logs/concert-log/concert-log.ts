@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { ConcertLogData } from '../concert-log-data';
 import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
@@ -10,10 +10,20 @@ import { Button } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../auth/auth-service';
+import { ConcertLogForm } from '../concert-log-form/concert-log-form';
 
 @Component({
   selector: 'app-concert-log',
-  imports: [CardModule, RatingModule, FormsModule, DatePipe, RouterLink, Button, MenuModule],
+  imports: [
+    CardModule,
+    RatingModule,
+    FormsModule,
+    DatePipe,
+    RouterLink,
+    Button,
+    MenuModule,
+    ConcertLogForm,
+  ],
   templateUrl: './concert-log.html',
 })
 export class ConcertLog {
@@ -22,6 +32,10 @@ export class ConcertLog {
   concertLog = input.required<ConcertLogData>();
   concert = input<ConcertData>();
   onUsersProfilePage = input<boolean>(false);
+  showMenu = input<boolean>(true);
+
+  showEdit = signal(false);
+  showDelete = signal(false);
 
   items: MenuItem[] = [
     {
@@ -30,6 +44,12 @@ export class ConcertLog {
         {
           label: 'Edit',
           icon: 'pi pi-pencil',
+          command: () => this.showEdit.set(true),
+        },
+        {
+          label: 'Delete',
+          icon: 'pi pi-trash',
+          command: () => this.showDelete.set(true),
         },
       ],
     },
