@@ -11,6 +11,7 @@ import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../auth/auth-service';
 import { ConcertLogForm } from '../concert-log-form/concert-log-form';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-concert-log',
@@ -23,6 +24,7 @@ import { ConcertLogForm } from '../concert-log-form/concert-log-form';
     Button,
     MenuModule,
     ConcertLogForm,
+    BadgeModule,
   ],
   templateUrl: './concert-log.html',
 })

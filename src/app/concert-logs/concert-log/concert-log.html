@@ -16,7 +16,7 @@
         </a>
         }
 
-        <div class="flex items-center justify-between w-full">
+        <div class="flex items-center gap-2 w-full">
           @if (!onUsersProfilePage()){
           <p class="text-muted-color">
             Reviewed by
@@ -26,7 +26,9 @@
               >{{ concertLog().user?.username }}</a
             >
           </p>
-          }
+          @if (authService.authUser()?.id === concertLog().userId) {
+          <p-badge value="My review" severity="secondary" />
+          } }
         </div>
 
         <div class="flex gap-2 items-center">
