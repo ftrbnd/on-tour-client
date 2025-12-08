@@ -28,5 +28,8 @@ export class ConcertDetailsPage {
     )
   );
 
+  userAlreadyLoggedConcert = computed(() =>
+    this.authService.authUser()?.concertLogs?.some((log) => log.concertId === this.concert()?.id)
+  );
   concertDate = computed(() => new Date(this.concert()?.date ?? new Date().getTime()));
 }

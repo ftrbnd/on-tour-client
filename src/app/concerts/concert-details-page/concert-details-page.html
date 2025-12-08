@@ -15,9 +15,10 @@
 <div class="flex justify-between items-center my-4">
   <p>{{ concertDate() | date : 'longDate' }}</p>
 
-  @if (authService.isAuthenticated()) { @if (concert(); as concert) {
-  <app-concert-action-buttons [concert]="concert" [fullWidth]="false" />
-  }}
+  <!-- TODO: hide this if user already logged it -->
+  @if (authService.isAuthenticated()) { @if (concert(); as concert) { @if
+  (!userAlreadyLoggedConcert()) {
+  <app-concert-action-buttons [concert]="concert" [fullWidth]="false" />} } }
 </div>
 
 @for (log of concert()?.concertLogs; track $index) {
