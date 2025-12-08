@@ -1,5 +1,6 @@
 import { z } from 'zod/v4';
 import { concertSchema } from '../concerts/concert-data';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export const venueSchema = z.object({
   id: z.number(),
@@ -19,3 +20,11 @@ export const venueFormSchema = venueSchema.omit({
   concerts: true,
 });
 export type VenueFormValues = z.infer<typeof venueFormSchema>;
+
+export function imageUrlValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const { error } = z.url().safeParse(control.value);
+
+    return error ? { invalidUrl: { value: control.value } } : null;
+  };
+}

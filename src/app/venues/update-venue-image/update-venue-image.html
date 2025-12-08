@@ -1,0 +1,28 @@
+<p-button (onClick)="dialogVisible.set(true)" icon="pi pi-image" severity="secondary" />
+
+<p-dialog
+  header="Update this venue's image"
+  [modal]="true"
+  [(visible)]="dialogVisible"
+  [style]="{ width: '40rem' }"
+>
+  <form class="p-2 flex flex-col gap-2" [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+    <p-inputgroup>
+      <p-inputgroup-addon>
+        <i class="pi pi-image"></i>
+      </p-inputgroup-addon>
+      <div class="flex flex-col gap-1 w-full">
+        <p-floatlabel variant="on">
+          <input pInputText id="url" type="text" formControlName="url" />
+          <label for="url">Image URL</label>
+        </p-floatlabel>
+
+        @if (imageForm.dirty && imageForm.hasError('invalidUrl', 'url')) {
+        <p-message severity="error" size="small" variant="simple">Not a valid URL</p-message>
+        }
+      </div>
+    </p-inputgroup>
+
+    <p-button type="submit" [disabled]="!imageForm.valid">Submit</p-button>
+  </form>
+</p-dialog>

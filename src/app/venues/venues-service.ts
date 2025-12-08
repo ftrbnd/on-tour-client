@@ -21,4 +21,11 @@ export class VenuesService {
   createVenue(newVenue: VenueFormValues) {
     return this.http.post<VenueData>(`${environment.apiUrl}/api/venues`, newVenue);
   }
+
+  updateVenue(venue: VenueData, updateValues: Partial<VenueFormValues>) {
+    return this.http.put<VenueData>(`${environment.apiUrl}/api/venues/${venue.id}`, {
+      ...venue,
+      ...updateValues,
+    });
+  }
 }

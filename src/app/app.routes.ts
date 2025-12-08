@@ -18,7 +18,7 @@ export const routes: Routes = [
   { path: 'artists', component: ArtistsPage },
   { path: 'artists/:id', component: ArtistPage },
   { path: 'venues', component: VenuesPage },
-  { path: 'venues/new', component: CreateVenuePage },
+  { path: 'venues/new', component: CreateVenuePage, canActivate: [authGuard] },
   { path: 'venues/:id', component: VenuePage },
   { path: 'concerts', component: ConcertsPage },
   { path: 'concerts/new', component: CreateConcertPage, canActivate: [authGuard] },

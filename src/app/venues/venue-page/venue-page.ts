@@ -5,10 +5,11 @@ import { switchMap } from 'rxjs';
 import { VenuesService } from '../../venues/venues-service';
 import { ConcertPreview } from '../../concerts/concert-preview/concert-preview';
 import { CreateConcertLink } from '../../concerts/create-concert-link/create-concert-link';
+import { UpdateVenueImage } from '../update-venue-image/update-venue-image';
 
 @Component({
   selector: 'app-venue-page',
-  imports: [ConcertPreview, CreateConcertLink],
+  imports: [ConcertPreview, CreateConcertLink, UpdateVenueImage],
   templateUrl: './venue-page.html',
 })
 export class VenuePage {
