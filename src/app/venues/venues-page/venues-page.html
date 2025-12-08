@@ -1,4 +1,10 @@
-<h2 class="text-4xl font-bold pt-4">Venues</h2>
+<div class="flex justify-between w-full items-center pt-4">
+  <h2 class="text-4xl font-bold">Venues</h2>
+  <a routerLink="/venues/new">
+    <p-button label="Add venue" variant="outlined" icon="pi pi-plus" class="font-bold" />
+  </a>
+</div>
+
 @if (venues().length > 0) {
 <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
   @for (venue of venues(); track $index) {

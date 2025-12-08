@@ -11,12 +11,14 @@ import { Register } from './auth/register/register';
 import { ConcertDetailsPage } from './concerts/concert-details-page/concert-details-page';
 import { HomeContent } from './home/home-content/home-content';
 import { UserPage } from './users/user-page/user-page';
+import { CreateVenuePage } from './venues/create-venue-page/create-venue-page';
 
 export const routes: Routes = [
   { path: '', component: HomeContent },
   { path: 'artists', component: ArtistsPage },
   { path: 'artists/:id', component: ArtistPage },
   { path: 'venues', component: VenuesPage },
+  { path: 'venues/new', component: CreateVenuePage },
   { path: 'venues/:id', component: VenuePage },
   { path: 'concerts', component: ConcertsPage },
   { path: 'concerts/new', component: CreateConcertPage, canActivate: [authGuard] },

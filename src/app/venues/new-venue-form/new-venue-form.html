@@ -1,0 +1,53 @@
+<form [formGroup]="venueForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-building"></i>
+    </p-inputgroup-addon>
+    <p-floatlabel variant="on">
+      <input pInputText id="name" type="text" formControlName="name" />
+      <label for="name">Name</label>
+    </p-floatlabel>
+  </p-inputgroup>
+
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-map-marker"></i>
+    </p-inputgroup-addon>
+    <p-floatlabel variant="on">
+      <input pInputText id="city" type="text" formControlName="city" />
+      <label for="city">City</label>
+    </p-floatlabel>
+  </p-inputgroup>
+
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-map-marker"></i>
+    </p-inputgroup-addon>
+    <p-floatlabel variant="on">
+      <input pInputText id="state" type="text" formControlName="state" />
+      <label for="state">State</label>
+    </p-floatlabel>
+  </p-inputgroup>
+
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-map"></i>
+    </p-inputgroup-addon>
+    <p-floatlabel variant="on">
+      <input pInputText id="country" type="text" formControlName="country" />
+      <label for="country">Country</label>
+    </p-floatlabel>
+  </p-inputgroup>
+
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-image"></i>
+    </p-inputgroup-addon>
+    <p-floatlabel variant="on">
+      <input pInputText id="imageUrl" type="text" formControlName="imageUrl" />
+      <label for="imageUrl">Image URL (optional)</label>
+    </p-floatlabel>
+  </p-inputgroup>
+
+  <p-button type="submit" [disabled]="!venueForm.valid">Submit</p-button>
+</form>
