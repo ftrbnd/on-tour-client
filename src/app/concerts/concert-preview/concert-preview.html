@@ -24,12 +24,7 @@
       <div class="flex flex-col">
         @if (currentPage() === "artist") {
         <p>{{ concert()?.venue?.name }}</p>
-        } @if (currentPage() === "venue") {
-        <p class="text-muted-color">
-          {{ venue()?.city }},
-          {{ venue()?.country === 'USA' ? venue()?.state : venue()?.country }}
-        </p>
-        } @else if (currentPage() === "artist") {
+        } @if (currentPage() === "artist") {
         <p class="text-muted-color">
           {{ concert()?.venue?.city }},
           {{
