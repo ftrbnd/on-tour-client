@@ -15,6 +15,10 @@ export class ConcertLogsService {
   private http = inject(HttpClient);
   private endpoint = `${environment.apiUrl}/api/concertlogs`;
 
+  createConcertLog(data: ConcertLogFormValues): Observable<ConcertLogData> {
+    return this.http.post<ConcertLogData>(this.endpoint, data);
+  }
+
   getConcertLogs(): Observable<ConcertLogData[]> {
     return this.http.get<ConcertLogData[]>(this.endpoint);
   }
@@ -23,15 +27,15 @@ export class ConcertLogsService {
     return this.http.get<ConcertLogData>(`${this.endpoint}/${id}`);
   }
 
-  createConcertLog(data: ConcertLogFormValues): Observable<ConcertLogData> {
-    return this.http.post<ConcertLogData>(this.endpoint, data);
+  getWeeklyConcertLogs(): Observable<ConcertLogData[]> {
+    return this.http.get<ConcertLogData[]>(`${this.endpoint}?sort=weekly`);
   }
 
   updateConcertLog(data: UpdateConcertLogFormValues) {
     return this.http.put<ConcertLogData>(`${this.endpoint}/${data.id}`, data);
   }
 
-  getWeeklyConcertLogs(): Observable<ConcertLogData[]> {
-    return this.http.get<ConcertLogData[]>(`${this.endpoint}?sort=weekly`);
+  deleteConcertLog(id: number) {
+    return this.http.delete(`${this.endpoint}/${id}`);
   }
 }

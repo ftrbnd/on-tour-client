@@ -12,6 +12,7 @@ import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../auth/auth-service';
 import { ConcertLogForm } from '../concert-log-form/concert-log-form';
 import { BadgeModule } from 'primeng/badge';
+import { ConfirmDeleteLog } from '../confirm-delete-log/confirm-delete-log';
 
 @Component({
   selector: 'app-concert-log',
@@ -25,6 +26,7 @@ import { BadgeModule } from 'primeng/badge';
     MenuModule,
     ConcertLogForm,
     BadgeModule,
+    ConfirmDeleteLog,
   ],
   templateUrl: './concert-log.html',
 })
