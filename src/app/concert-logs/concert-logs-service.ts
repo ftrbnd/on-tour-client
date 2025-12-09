@@ -28,7 +28,7 @@ export class ConcertLogsService {
   }
 
   updateConcertLog(data: UpdateConcertLogFormValues) {
-    return this.http.put<void>(`${this.endpoint}/${data.id}`, data);
+    return this.http.put<ConcertLogData>(`${this.endpoint}/${data.id}`, data);
   }
 
   getWeeklyConcertLogs(): Observable<ConcertLogData[]> {

@@ -11,23 +11,38 @@
 
   <form class="w-full flex flex-col gap-4" [formGroup]="concertLogForm" (ngSubmit)="submit()">
     <p-inputgroup>
-      <p-floatlabel variant="on">
-        <textarea
-          formControlName="review"
-          pTextarea
-          id="concert_review"
-          rows="5"
-          cols="30"
-          fluid
-          class="resize-none"
-        ></textarea>
-        <label for="concert_review">Review</label>
-      </p-floatlabel>
+      <div class="flex flex-col gap-1 w-full">
+        <p-floatlabel variant="on">
+          <textarea
+            formControlName="review"
+            pTextarea
+            id="concert_review"
+            rows="5"
+            cols="30"
+            fluid
+            class="resize-none"
+          ></textarea>
+          <label for="concert_review">Review</label>
+        </p-floatlabel>
+
+        @if (concertLogForm.dirty && concertLogForm.hasError('maxlength', 'review')) {
+        <p-message severity="error" size="small" variant="simple"
+          >Must be under 300 characters.</p-message
+        >
+        }
+      </div>
     </p-inputgroup>
 
     <p-inputgroup class="flex flex-col">
-      <label class="text-muted-color" for="rating">Rating</label>
-      <p-rating formControlName="rating" />
+      <div class="flex flex-col gap-1 w-full">
+        <label class="text-muted-color" for="rating">Rating</label>
+        <p-rating formControlName="rating" />
+        @if (concertLogForm.dirty && concertLogForm.hasError('required', 'rating')) {
+        <p-message severity="error" size="small" variant="simple"
+          >Must be a value from 1-5.</p-message
+        >
+        }
+      </div>
     </p-inputgroup>
 
     <p-inputgroup class="flex gap-2 items-center">

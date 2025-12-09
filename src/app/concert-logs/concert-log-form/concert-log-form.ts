@@ -17,6 +17,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { TextareaModule } from 'primeng/textarea';
+import { Message } from 'primeng/message';
 
 @Component({
   selector: 'app-concert-log-form',
@@ -30,6 +31,7 @@ import { TextareaModule } from 'primeng/textarea';
     CheckboxModule,
     ToggleButtonModule,
     TextareaModule,
+    Message,
   ],
   templateUrl: './concert-log-form.html',
 })
@@ -54,11 +56,7 @@ export class ConcertLogForm {
   }
 
   concertLogForm = new FormGroup({
-    review: new FormControl(this.previousConcertLog()?.review ?? '', [
-      Validators.required,
-      Validators.minLength(1),
-      Validators.maxLength(300),
-    ]),
+    review: new FormControl(this.previousConcertLog()?.review ?? '', [Validators.maxLength(300)]),
     rating: new FormControl(this.previousConcertLog()?.rating ?? 1, [
       Validators.required,
       Validators.min(1),
@@ -76,7 +74,10 @@ export class ConcertLogForm {
       });
       this.submitUpdatedConcertLog(validConcertLog);
     } else {
-      const validConcertLog = concertLogFormSchema.parse(this.concertLogForm.value);
+      const validConcertLog = concertLogFormSchema.parse({
+        ...this.concertLogForm.value,
+        concertId: this.concert()?.id,
+      });
       this.submitNewConcertLog(validConcertLog);
     }
   }
@@ -84,14 +85,20 @@ export class ConcertLogForm {
   submitNewConcertLog(concertLog: ConcertLogFormValues) {
     this.concertLogsService.createConcertLog(concertLog).subscribe({
       error: (err) => console.error(err),
-      next: () => this.visible.set(false),
+      next: () => {
+        this.visible.set(false);
+        window.location.reload();
+      },
     });
   }
 
   submitUpdatedConcertLog(concertLog: UpdateConcertLogFormValues) {
     this.concertLogsService.updateConcertLog(concertLog).subscribe({
       error: (err) => console.error(err),
-      next: () => this.visible.set(false),
+      next: () => {
+        this.visible.set(false);
+        window.location.reload();
+      },
     });
   }
 }

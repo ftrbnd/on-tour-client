@@ -4,7 +4,7 @@ import { userSchema } from '../users/user-data';
 
 export const concertLogSchema = z.object({
   id: z.number(),
-  review: z.string().max(300),
+  review: z.string().trim().max(300).optional(),
   rating: z.number().min(1).max(5),
   liked: z.boolean(),
   concertId: z.number(),
