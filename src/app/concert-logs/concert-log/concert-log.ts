@@ -37,6 +37,7 @@ export class ConcertLog {
   concert = input<ConcertData>();
   onUsersProfilePage = input<boolean>(false);
   showMenu = input<boolean>(true);
+  isFullPage = input<boolean>(false);
 
   showEdit = signal(false);
   showDelete = signal(false);

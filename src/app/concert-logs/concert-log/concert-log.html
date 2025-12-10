@@ -1,23 +1,45 @@
+@if (isFullPage()) {
+<div class="relative w-full h-24">
+  <img
+    [src]="concert()?.artist?.imageUrl"
+    [alt]="concert()?.artist?.name"
+    class="w-full h-full object-cover brightness-50"
+  />
+
+  <div class="absolute inset-y-6 flex w-full justify-between">
+    <div class="flex-col">
+      <h2 class="text-4xl font-bold">{{ concert()?.artist?.name }} - {{ concert()?.tour }}</h2>
+      <h3 class="text-2xl text-muted-color">
+        Reviewed by
+        <a
+          [routerLink]="['/user', concertLog().user?.username]"
+          class="font-bold text-muted-color-emphasis hover:underline"
+          >{{ concertLog().user?.username }}</a
+        >
+      </h3>
+    </div>
+  </div>
+</div>
+}
 <p-card class="h-full">
   <div class="flex gap-2 items-center flex-col md:flex-row">
-    @if (concert(); as concert) {
+    @if (concert(); as concert) { @if (!isFullPage()) {
     <img
       [src]="concert.artist?.imageUrl"
       [alt]="concert.artist?.name"
       class="self-start w-full h-24 md:w-24 md:h-full object-cover rounded-sm md:rounded-md"
-    />
-    }
+    />} }
 
     <div class="flex flex-col ml-2 w-full">
       <div class="flex flex-col items-start md:flex-row flex-wrap md:items-center gap-2">
-        @if (concert(); as concert) {
+        @if (concert(); as concert) { @if (!isFullPage()) {
         <a class="hover:underline" [routerLink]="['/concerts', concert.id]">
           <p class="font-bold">{{ concert.artist?.name }} - {{ concert.tour }}</p>
         </a>
-        }
+        }}
 
         <div class="flex items-center gap-2 w-full">
-          @if (!onUsersProfilePage()){
+          @if (!onUsersProfilePage() && !isFullPage()){
           <p class="text-muted-color">
             Reviewed by
             <a
@@ -42,10 +64,12 @@
         </div>
       </div>
 
-      <p class="pt-4 pb-2 line-clamp-3 md:line-clamp-5">{{ concertLog().review }}</p>
-      @if (concert(); as concert) {
-      <p class="text-muted-color text-xs text-end">{{ concert.date | date : 'shortDate' }}</p>
-      }
+      <a class="hover:underline" [routerLink]="['/logs', concertLog().id]">
+        <p class="pt-4 pb-2 line-clamp-3 md:line-clamp-5">{{ concertLog().review }}</p>
+        @if (concert(); as concert) {
+        <p class="text-muted-color text-xs text-end">{{ concert.date | date : 'shortDate' }}</p>
+        }
+      </a>
     </div>
 
     @if (authService.authUser()?.id == concertLog().userId && showMenu()) {

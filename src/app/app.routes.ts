@@ -12,6 +12,7 @@ import { ConcertDetailsPage } from './concerts/concert-details-page/concert-deta
 import { HomeContent } from './home/home-content/home-content';
 import { UserPage } from './users/user-page/user-page';
 import { CreateVenuePage } from './venues/create-venue-page/create-venue-page';
+import { ConcertLogPage } from './concert-logs/concert-log-page/concert-log-page';
 
 export const routes: Routes = [
   { path: '', component: HomeContent },
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'concerts', component: ConcertsPage },
   { path: 'concerts/new', component: CreateConcertPage, canActivate: [authGuard] },
   { path: 'concerts/:id', component: ConcertDetailsPage },
+  { path: 'logs/:id', component: ConcertLogPage },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
   { path: 'user/:username', component: UserPage },
