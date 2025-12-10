@@ -1,0 +1,21 @@
+<form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="flex flex-col gap-4 pt-4">
+  <div class="flex flex-col gap-1">
+    <textarea
+      rows="3"
+      cols="30"
+      pTextarea
+      formControlName="text"
+      [placeholder]="['Reply to', concertLog().user?.username].join(' ').concat('...')"
+    ></textarea>
+    @if (commentForm.dirty && commentForm.hasError('required', 'text')) {
+    <p-message severity="error" size="small" variant="simple"
+      >Comments must be less than 300 characters.</p-message
+    >
+    } @else if (error(); as error) {
+    <app-error-message [error]="error" />
+    }
+  </div>
+  <button [disabled]="commentForm.invalid" pButton severity="secondary" type="submit">
+    <span pButtonLabel>Send</span>
+  </button>
+</form>

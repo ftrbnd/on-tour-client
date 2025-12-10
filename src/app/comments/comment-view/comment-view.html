@@ -1,0 +1,10 @@
+<p-card [header]="comment().user?.username">
+  <div class="flex justify-between">
+    <p class="m-0">
+      {{ comment().text }}
+    </p>
+    <p class="m-0">
+      {{ comment().date | date : 'shortDate' }}
+    </p>
+  </div>
+</p-card>
