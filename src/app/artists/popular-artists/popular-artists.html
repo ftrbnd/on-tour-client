@@ -1,4 +1,6 @@
-@if (popularArtists().length > 0) {
+@if (error(); as error) {
+<app-error-message [error]="error" />
+} @else if (popularArtists().length > 0) {
 <p-carousel
   [value]="popularArtists()"
   [numVisible]="3"

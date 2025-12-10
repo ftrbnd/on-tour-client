@@ -67,7 +67,10 @@ export class Login {
         console.error(error);
         this.loginResponse.set({
           success: false,
-          message: error.status === 500 ? 'The server failed to respond.' : error.message,
+          message:
+            error.status === 500 || error.message.includes('Http failure')
+              ? 'The server failed to respond.'
+              : error.message,
         });
       },
     });

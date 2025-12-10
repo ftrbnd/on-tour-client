@@ -65,9 +65,13 @@ export class Register {
       },
       error: (error) => {
         console.error(error);
-        if (error.status == 401) {
-          this.registerResponse.set(error.error);
-        }
+        this.registerResponse.set({
+          success: false,
+          message:
+            error.status === 500 || error.message.includes('Http failure')
+              ? 'The server failed to respond.'
+              : error.message,
+        });
       },
     });
   }

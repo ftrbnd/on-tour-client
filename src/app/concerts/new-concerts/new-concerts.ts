@@ -6,10 +6,11 @@ import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { carouselResponsiveOptions } from '../../home/carousel-options';
+import { ErrorMessage } from '../../errors/error-message/error-message';
 
 @Component({
   selector: 'app-new-concerts',
-  imports: [ConcertCard, CarouselModule, TagModule, ButtonModule],
+  imports: [ConcertCard, CarouselModule, TagModule, ButtonModule, ErrorMessage],
   templateUrl: './new-concerts.html',
 })
 export class NewConcerts implements OnInit {
@@ -17,7 +18,12 @@ export class NewConcerts implements OnInit {
   latestConcerts = signal<ConcertData[]>([]);
   responsiveOptions = carouselResponsiveOptions;
 
+  error = signal<string | null>(null);
+
   ngOnInit(): void {
-    this.concertsService.getLatestConcerts().subscribe((res) => this.latestConcerts.set(res));
+    this.concertsService.getLatestConcerts().subscribe({
+      error: (err) => this.error.set(err.message),
+      next: (res) => this.latestConcerts.set(res),
+    });
   }
 }

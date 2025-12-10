@@ -1,4 +1,6 @@
-@if (latestConcerts().length > 0) {
+@if (error(); as error) {
+<app-error-message [error]="error" />
+} @else if (latestConcerts().length > 0) {
 <p-carousel
   [value]="latestConcerts()"
   [numVisible]="3"
