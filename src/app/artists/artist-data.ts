@@ -11,5 +11,11 @@ export const artistSchema = z.object({
     return z.array(concertSchema.omit({ artist: true })).optional();
   },
 });
-
 export type ArtistData = z.infer<typeof artistSchema>;
+
+export const artistSearchSchema = artistSchema.pick({
+  spotifyId: true,
+  name: true,
+  imageUrl: true,
+});
+export type ArtistSearchResult = z.infer<typeof artistSearchSchema>;

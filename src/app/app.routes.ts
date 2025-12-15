@@ -13,10 +13,12 @@ import { HomeContent } from './home/home-content/home-content';
 import { UserPage } from './users/user-page/user-page';
 import { CreateVenuePage } from './venues/create-venue-page/create-venue-page';
 import { ConcertLogPage } from './concert-logs/concert-log-page/concert-log-page';
+import { CreateArtistPage } from './artists/create-artist-page/create-artist-page';
 
 export const routes: Routes = [
   { path: '', component: HomeContent },
   { path: 'artists', component: ArtistsPage },
+  { path: 'artists/new', component: CreateArtistPage },
   { path: 'artists/:id', component: ArtistPage },
   { path: 'venues', component: VenuesPage },
   { path: 'venues/new', component: CreateVenuePage, canActivate: [authGuard] },
