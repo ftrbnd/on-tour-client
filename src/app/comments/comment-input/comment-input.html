@@ -15,7 +15,13 @@
     <app-error-message [error]="error" />
     }
   </div>
-  <button [disabled]="commentForm.invalid" pButton severity="secondary" type="submit">
-    <span pButtonLabel>Send</span>
+  <button
+    [disabled]="commentForm.invalid || isSubmitting()"
+    pButton
+    severity="secondary"
+    type="submit"
+    [loading]="isSubmitting()"
+  >
+    <span pButtonLabel>{{ isSubmitting() ? 'Sending...' : 'Send' }}</span>
   </button>
 </form>

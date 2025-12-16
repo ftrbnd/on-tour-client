@@ -18,10 +18,17 @@ export class CommentInput {
   concertLog = input.required<ConcertLogData>();
 
   commentForm = new FormGroup({
-    text: new FormControl('', [Validators.required, Validators.maxLength(300)]),
+    text: new FormControl(
+      {
+        value: '',
+        disabled: false,
+      },
+      [Validators.required, Validators.maxLength(300)]
+    ),
   });
 
   error = signal<string | null>(null);
+  isSubmitting = signal<boolean>(false);
 
   submitComment() {
     const { data, error } = commentFormSchema.safeParse({
@@ -31,11 +38,27 @@ export class CommentInput {
 
     if (error) {
       console.error(error);
+      this.setFormStatus(false, error.message);
     } else {
+      this.setFormStatus(true);
+
       this.commentsService.addComment(data).subscribe({
-        error: (err) => this.error.set(err.message),
-        next: () => window.location.reload(),
+        error: (err) => {
+          this.setFormStatus(false, err.message);
+        },
+        next: () => {
+          this.commentForm.reset();
+          this.setFormStatus(false);
+        },
       });
     }
+  }
+
+  setFormStatus(isSubmitting: boolean, error?: string | null) {
+    this.isSubmitting.set(isSubmitting);
+    if (isSubmitting) this.commentForm.controls.text.disable();
+    else this.commentForm.controls.text.enable();
+
+    if (error !== undefined) this.error.set(error);
   }
 }

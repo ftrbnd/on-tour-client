@@ -3,7 +3,7 @@
 } @if (concertLog(); as log) {
 <app-comment-input [concertLog]="log" />
 }
-<div class="py-2">
+<div class="py-2 flex justify-between items-center">
   @if (comments().length > 0) {
   <p-message severity="info" variant="simple"
     >{{ comments().length }} {{ comments().length === 1 ? 'comment' : 'comments' }}</p-message
@@ -14,6 +14,16 @@
       <p-message severity="info" variant="simple">No comments yet.</p-message>
     </div>
   </p-card>
+  } @if (concertLog(); as log) {
+  <p-button
+    [pTooltip]="successfullyJoinedGroup() ? '' : 'Reconnect'"
+    [disabled]="successfullyJoinedGroup()"
+    (onClick)="signalRService.joinConcertLogGroup(log.id)"
+    variant="outlined"
+    [label]="successfullyJoinedGroup() ? 'LIVE' : 'Disconnected'"
+    [severity]="successfullyJoinedGroup() ? 'success' : 'danger'"
+    [icon]="successfullyJoinedGroup() ? 'pi pi-wave-pulse' : 'pi pi-exclamation-circle'"
+  />
   }
 </div>
 <div class="flex flex-col gap-2">
