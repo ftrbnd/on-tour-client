@@ -1,1 +1,23 @@
-<p>create-artist-page works!</p>
+<h2 class="text-4xl font-bold py-4">Add an artist</h2>
+
+<form [formGroup]="searchForm" (ngSubmit)="submitSearch()" class="flex flex-col gap-2 w-full py-2">
+  <p-floatlabel variant="on">
+    <input pInputText id="query" type="text" formControlName="query" class="w-full" />
+    <label for="query">Search</label>
+  </p-floatlabel>
+
+  @if (searchForm.dirty && searchForm.invalid) {
+  <p-message severity="error" variant="simple">Search value is required</p-message>
+  }
+</form>
+
+<div class="flex flex-col gap-2">
+  @for (result of results(); track $index) {
+  <div
+    class="bg-surface-900 p-2 flex gap-2 items-center w-full hover:cursor-pointer hover:opacity-80 hover:font-bold hover:text-primary"
+  >
+    <img [src]="result.imageUrl" [alt]="result.name" class="rounded-md size-12 md:size-18" />
+    <p class="md:text-lg">{{ result.name }}</p>
+  </div>
+  }
+</div>
