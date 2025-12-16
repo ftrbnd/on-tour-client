@@ -26,4 +26,12 @@ export class ArtistsService {
   searchArtists(query: string) {
     return this.http.get<ArtistSearchResult[]>(`${this.endpoint}/search?query=${query}`);
   }
+
+  createArtist(data: ArtistSearchResult) {
+    return this.http.post<ArtistData>(this.endpoint, data);
+  }
+
+  checkArtistExists(spotifyId: string) {
+    return this.http.get<number | null>(`${this.endpoint}/alreadyExists?spotifyId=${spotifyId}`);
+  }
 }

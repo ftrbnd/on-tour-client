@@ -17,5 +17,6 @@ export const artistSearchSchema = artistSchema.pick({
   spotifyId: true,
   name: true,
   imageUrl: true,
+  url: true,
 });
 export type ArtistSearchResult = z.infer<typeof artistSearchSchema>;

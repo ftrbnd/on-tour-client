@@ -1,0 +1,30 @@
+<p-card>
+  <ng-template #header>
+    <img [alt]="artist().name" class="h-24 md:h-48 w-full object-cover" [src]="artist().imageUrl" />
+  </ng-template>
+  <ng-template #title> {{ artist().name }}</ng-template>
+  <ng-template #subtitle> Create a page for {{ artist().name }}? </ng-template>
+  <ng-template #footer>
+    <div class="flex flex-col gap-4 mt-1">
+      <form [formGroup]="artistForm" (ngSubmit)="submitArtist()" class="w-full">
+        <p-button
+          [disabled]="artistForm.hasError('alreadyExists', 'spotifyId')"
+          type="submit"
+          label="Confirm"
+          class="w-full"
+          styleClass="w-full"
+        />
+      </form>
+
+      @if (error(); as error) {
+      <app-error-message [error]="error" />
+      } @if (artistForm.hasError('alreadyExists', 'spotifyId')) {
+      <a routerLink="/artists">
+        <p-message severity="error" variant="simple" class="underline"
+          >A page for this artist already exists!</p-message
+        ></a
+      >
+      }
+    </div>
+  </ng-template>
+</p-card>

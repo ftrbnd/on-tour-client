@@ -7,10 +7,22 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { ArtistsService } from '../artists-service';
 import { CardModule } from 'primeng/card';
 import { MessageModule } from 'primeng/message';
+import { StepperModule } from 'primeng/stepper';
+import { ButtonModule } from 'primeng/button';
+import { NewArtistForm } from '../new-artist-form/new-artist-form';
 
 @Component({
   selector: 'app-create-artist-page',
-  imports: [ReactiveFormsModule, InputTextModule, FloatLabelModule, CardModule, MessageModule],
+  imports: [
+    ReactiveFormsModule,
+    InputTextModule,
+    FloatLabelModule,
+    CardModule,
+    MessageModule,
+    StepperModule,
+    ButtonModule,
+    NewArtistForm,
+  ],
   templateUrl: './create-artist-page.html',
 })
 export class CreateArtistPage implements OnInit {
@@ -20,6 +32,7 @@ export class CreateArtistPage implements OnInit {
     query: new FormControl('', [Validators.required]),
   });
   results = signal<ArtistSearchResult[]>([]);
+  selectedArtist = signal<ArtistSearchResult | null>(null);
 
   ngOnInit() {
     this.searchForm.controls.query.valueChanges

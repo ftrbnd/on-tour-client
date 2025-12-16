@@ -1,23 +1,64 @@
 <h2 class="text-4xl font-bold py-4">Add an artist</h2>
 
-<form [formGroup]="searchForm" (ngSubmit)="submitSearch()" class="flex flex-col gap-2 w-full py-2">
-  <p-floatlabel variant="on">
-    <input pInputText id="query" type="text" formControlName="query" class="w-full" />
-    <label for="query">Search</label>
-  </p-floatlabel>
+<p-stepper [value]="1" class="basis-200" [linear]="true">
+  <p-step-list>
+    <p-step [value]="1">Select artist</p-step>
+    <p-step [value]="2">Confirm</p-step>
+  </p-step-list>
+  <p-step-panels>
+    <p-step-panel [value]="1">
+      <ng-template #content let-activateCallback="activateCallback">
+        <form
+          [formGroup]="searchForm"
+          (ngSubmit)="submitSearch()"
+          class="flex flex-col gap-2 w-full py-2"
+        >
+          <p-floatlabel variant="on">
+            <input pInputText id="query" type="text" formControlName="query" class="w-full" />
+            <label for="query">Search</label>
+          </p-floatlabel>
 
-  @if (searchForm.dirty && searchForm.invalid) {
-  <p-message severity="error" variant="simple">Search value is required</p-message>
-  }
-</form>
+          @if (searchForm.dirty && searchForm.invalid && results().length == 0) {
+          <p-message severity="error" variant="simple">A search term is required</p-message>
+          }
+        </form>
 
-<div class="flex flex-col gap-2">
-  @for (result of results(); track $index) {
-  <div
-    class="bg-surface-900 p-2 flex gap-2 items-center w-full hover:cursor-pointer hover:opacity-80 hover:font-bold hover:text-primary"
-  >
-    <img [src]="result.imageUrl" [alt]="result.name" class="rounded-md size-12 md:size-18" />
-    <p class="md:text-lg">{{ result.name }}</p>
-  </div>
-  }
-</div>
+        <div class="flex flex-col gap-2">
+          @for (result of results(); track $index) {
+          <div
+            (click)="selectedArtist.set(result); activateCallback(2)"
+            class="bg-surface-900 p-2 flex gap-2 items-center w-full hover:cursor-pointer hover:opacity-80 hover:font-bold hover:text-primary"
+          >
+            <img
+              [src]="result.imageUrl"
+              [alt]="result.name"
+              class="rounded-md size-12 md:size-18"
+            />
+            <p class="md:text-lg">{{ result.name }}</p>
+          </div>
+          } @empty {<p-message severity="info" variant="simple"
+            >Enter an artist to get started.</p-message
+          >}
+        </div>
+      </ng-template>
+    </p-step-panel>
+
+    <p-step-panel [value]="2">
+      <ng-template #content let-activateCallback="activateCallback">
+        @if (selectedArtist(); as artist) {
+        <app-new-artist-form [artist]="artist" />
+        }
+
+        <div class="flex pt-6 justify-start">
+          <p-button
+            label="Back"
+            variant="outlined"
+            icon="pi pi-arrow-left"
+            iconPos="right"
+            (onClick)="activateCallback(1)"
+          />
+        </div>
+      </ng-template>
+    </p-step-panel>
+  </p-step-panels>
+</p-stepper>
