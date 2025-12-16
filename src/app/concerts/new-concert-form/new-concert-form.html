@@ -3,32 +3,46 @@
     <p-inputgroup-addon>
       <i class="pi pi-user"></i>
     </p-inputgroup-addon>
-    <p-floatlabel variant="on">
-      <p-select
-        [options]="artists()"
-        optionLabel="name"
-        optionValue="id"
-        placeholder="Artist"
-        formControlName="artistId"
-        [invalid]="isInvalid('artistId')"
-      />
-    </p-floatlabel>
+    <div class="flex flex-col gap-1 w-full">
+      <p-floatlabel variant="on">
+        <p-select
+          [editable]="true"
+          [options]="artists()"
+          optionLabel="name"
+          optionValue="id"
+          placeholder="Artist"
+          formControlName="artistId"
+          [invalid]="isInvalid('artistId')"
+        />
+      </p-floatlabel>
+
+      @if (isInvalid('artistId') && concertForm.hasError('invalidSelection', 'artistId')) {
+      <p-message severity="error" size="small" variant="simple">Please select an artist.</p-message>
+      }
+    </div>
   </p-inputgroup>
 
   <p-inputgroup>
     <p-inputgroup-addon>
       <i class="pi pi-building"></i>
     </p-inputgroup-addon>
-    <p-floatlabel variant="on">
-      <p-select
-        [options]="venues()"
-        optionLabel="name"
-        optionValue="id"
-        placeholder="Venue"
-        formControlName="venueId"
-        [invalid]="isInvalid('venueId')"
-      />
-    </p-floatlabel>
+    <div class="flex flex-col gap-1 w-full">
+      <p-floatlabel variant="on">
+        <p-select
+          [editable]="true"
+          [options]="venues()"
+          optionLabel="name"
+          optionValue="id"
+          placeholder="Venue"
+          formControlName="venueId"
+          [invalid]="isInvalid('venueId')"
+        />
+      </p-floatlabel>
+
+      @if (isInvalid('venueId') && concertForm.hasError('invalidSelection', 'venueId')) {
+      <p-message severity="error" size="small" variant="simple">Please select a venue.</p-message>
+      }
+    </div>
   </p-inputgroup>
 
   <p-inputgroup>

@@ -1,5 +1,13 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -41,8 +49,8 @@ export class NewConcertForm implements OnInit {
   venues = signal<VenueData[]>([]);
 
   concertForm = new FormGroup({
-    artistId: new FormControl(-1, [Validators.required]),
-    venueId: new FormControl(-1, [Validators.required]),
+    artistId: new FormControl(-1, [Validators.required, this.idValidator('artists')]),
+    venueId: new FormControl(-1, [Validators.required, this.idValidator('venues')]),
     tour: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     date: new FormControl(new Date(), [Validators.required]),
   });
@@ -72,5 +80,22 @@ export class NewConcertForm implements OnInit {
         next: (data) => this.router.navigateByUrl(`/concerts/${data.id}`),
       });
     }
+  }
+
+  idValidator(fieldName: 'artists' | 'venues'): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let isValidValue: boolean = true;
+
+      switch (fieldName) {
+        case 'artists':
+          isValidValue = this.artists().some((a) => a.id === control.value);
+          break;
+        case 'venues':
+          isValidValue = this.venues().some((v) => v.id === control.value);
+          break;
+      }
+
+      return !isValidValue ? { invalidSelection: { value: control.value } } : null;
+    };
   }
 }
