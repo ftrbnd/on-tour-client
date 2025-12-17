@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://ontour-api-bnewhududva7dwhp.westus2-01.azurewebsites.net/",
+    "target": "https://ontour-api-bnewhududva7dwhp.westus2-01.azurewebsites.net",
     "secure": false
   }
 }
