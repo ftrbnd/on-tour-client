@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://98.93.32.123",
+    "target": "https://ontour-api-bnewhududva7dwhp.westus2-01.azurewebsites.net/",
     "secure": false
   }
 }

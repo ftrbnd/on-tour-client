@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://98.93.32.123',
+  apiUrl: 'https://ontour-api-bnewhududva7dwhp.westus2-01.azurewebsites.net/',
 };
