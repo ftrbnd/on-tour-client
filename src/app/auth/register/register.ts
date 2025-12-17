@@ -67,10 +67,7 @@ export class Register {
         console.error(error);
         this.registerResponse.set({
           success: false,
-          message:
-            error.status === 500 || error.message.includes('Http failure')
-              ? 'The server failed to respond.'
-              : error.message,
+          message: error.error.message,
         });
       },
     });
