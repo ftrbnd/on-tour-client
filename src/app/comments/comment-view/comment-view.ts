@@ -13,8 +13,8 @@ export class CommentView {
   comment = input.required<CommentData>();
 
   isToday = computed(() => {
-    const today = new Date().toDateString();
-    const commentDay = new Date(this.comment().date).toDateString();
+    const today = new Date().toLocaleDateString();
+    const commentDay = new Date(this.comment().date).toLocaleDateString();
 
     return today === commentDay;
   });
