@@ -14,10 +14,16 @@
           formControlName="artistId"
           [invalid]="isInvalid('artistId')"
         />
+        <label for="artistId">Artist</label>
       </p-floatlabel>
 
       @if (isInvalid('artistId') && concertForm.hasError('invalidSelection', 'artistId')) {
       <p-message severity="error" size="small" variant="simple">Please select an artist.</p-message>
+      } @else{
+      <p-message severity="info" size="small" variant="simple" ;
+        >Don't see your artist?
+        <a class="underline" routerLink="/artists/new"> Add them here! </a>
+      </p-message>
       }
     </div>
   </p-inputgroup>
@@ -37,10 +43,16 @@
           formControlName="venueId"
           [invalid]="isInvalid('venueId')"
         />
+        <label for="venueId">Venue</label>
       </p-floatlabel>
 
       @if (isInvalid('venueId') && concertForm.hasError('invalidSelection', 'venueId')) {
       <p-message severity="error" size="small" variant="simple">Please select a venue.</p-message>
+      }@else {
+      <p-message severity="info" size="small" variant="simple"
+        >Don't see the venue?
+        <a class="underline" routerLink="/venues/new"> Add it here! </a>
+      </p-message>
       }
     </div>
   </p-inputgroup>

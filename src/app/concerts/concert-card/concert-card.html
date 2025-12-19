@@ -1,10 +1,12 @@
 @if (concert(); as concert) {
-<p-card class="overflow-hidden w-full sm:max-w-64 md:max-w-72 2xl:max-w-96 h-full">
+<p-card
+  class="overflow-hidden w-full sm:max-w-64 md:max-w-72 2xl:max-w-96 h-full justify-self-center mx-2"
+>
   <ng-template #header>
     <div class="relative">
       <img
         [alt]="concert.venue?.name"
-        class="w-full h-48 object-cover"
+        class="w-full h-48 object-cover rounded"
         [src]="concert.venue?.imageUrl"
       />
       <p-avatar
@@ -27,6 +29,7 @@
     {{ concert.venue?.country === 'USA' ? concert.venue?.state : concert.venue?.country }}
   </p>
 </p-card>
+
 } @else {
 <p-message severity="error" size="small" variant="simple">Concert not found.</p-message>
 }

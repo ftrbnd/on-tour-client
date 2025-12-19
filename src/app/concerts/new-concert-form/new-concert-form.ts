@@ -22,7 +22,7 @@ import { concertFormSchema } from '../concert-data';
 import { DatePickerModule } from 'primeng/datepicker';
 import { MessageModule } from 'primeng/message';
 import { ConcertsService } from '../concerts-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-new-concert-form',
@@ -36,6 +36,7 @@ import { Router } from '@angular/router';
     ButtonModule,
     DatePickerModule,
     MessageModule,
+    RouterLink,
   ],
   templateUrl: './new-concert-form.html',
 })
@@ -49,8 +50,8 @@ export class NewConcertForm implements OnInit {
   venues = signal<VenueData[]>([]);
 
   concertForm = new FormGroup({
-    artistId: new FormControl(-1, [Validators.required, this.idValidator('artists')]),
-    venueId: new FormControl(-1, [Validators.required, this.idValidator('venues')]),
+    artistId: new FormControl('', [Validators.required, this.idValidator('artists')]),
+    venueId: new FormControl('', [Validators.required, this.idValidator('venues')]),
     tour: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     date: new FormControl(new Date(), [Validators.required]),
   });
